@@ -1,0 +1,26 @@
+{
+  "name": "portfolio",
+  "version": "0.0.5",
+  "description": "Lukas Kalcok Personal Portfolio",
+  "main": "index.html",
+  "dependencies": {
+    "bower": "^1.6.5",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-cssshrink": "^0.1.5",
+    "gulp-less": "^3.0.3",
+    "gulp-uglifyjs": "^0.6.2",
+    "gulp-util": "^3.0.7",
+    "gulp-watch": "^4.3.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "portfolio",
+    "angularJS"
+  ],
+  "author": "Lukas Kalcok",
+  "license": "ISC"
+}
