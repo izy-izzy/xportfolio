@@ -5,13 +5,17 @@
   "main": "index.html",
   "dependencies": {
     "bower": "^1.6.5",
+    "fd": "0.0.2",
+    "fs": "0.0.2",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
     "gulp-cssshrink": "^0.1.5",
     "gulp-less": "^3.0.3",
     "gulp-uglifyjs": "^0.6.2",
     "gulp-util": "^3.0.7",
-    "gulp-watch": "^4.3.5"
+    "gulp-watch": "^4.3.5",
+    "http": "0.0.0",
+    "httpdispatcher": "^0.4.0"
   },
   "devDependencies": {},
   "scripts": {
