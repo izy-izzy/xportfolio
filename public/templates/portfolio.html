@@ -1,5 +1,5 @@
 <div id="page-portfolio" ng-controller="portfolioController" isotope-container="isotope-container">
-	<div ng-repeat="project in projects" class="project-box" ng-class="projectXY(project)" isotope-item="isotope-item">
+	<div ng-repeat="project in projects" class="project-box" ng-class="projectXY(project)" isotope-item="isotope-item" ng-click="showProject($index)">
 		<div class="image_thumb">
 			<img ng-src="{{projectThumb(project)}}"/>
 		</div>

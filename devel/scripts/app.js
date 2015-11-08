@@ -1,8 +1,18 @@
-var xportfolio = angular.module('xportfolio', ['firebase','ui.router', 'iso.directives', 'ngAnimate']);
+var xportfolio = angular.module('xportfolio', [
+  'firebase',
+  'ui.router',
+  'iso.directives',
+  'ngAnimate',
+  'angulartics',
+  'angulartics.google.analytics'
+]);
 
-xportfolio.config(function($stateProvider, $urlRouterProvider) {
+xportfolio.config(function($stateProvider, $urlRouterProvider, $analyticsProvider) {
   
   //$locationProvider.html5Mode(true);
+
+  $analyticsProvider.firstPageview(true); /* Records pages that don't use $state or $route */
+  $analyticsProvider.withAutoBase(true);
 
   $urlRouterProvider.otherwise("/intro");
   
@@ -15,12 +25,13 @@ xportfolio.config(function($stateProvider, $urlRouterProvider) {
       url: "/portfolio",
       templateUrl: "templates/portfolio.html",
     })
-    .state('contact', {
-      url: "/contact",
-      templateUrl: "templates/contact.html"
+    .state('bio', {
+      url: "/bio",
+      templateUrl: "templates/bio.html",
     })
-    .state('aboutme', {
-      url: "/aboutme",
-      templateUrl: "templates/aboutme.html",
+    .state('project', {
+      url: "/project/:projectID",
+      templateUrl: "templates/project.html",
     });
 });
+

@@ -4,7 +4,8 @@ var fs = require('fs');
 var baseDirectory = "./../public" ;
 var PORT = 8080;
 
-var correctFileTypes = ['html','js','jpg','css'];
+var correctFileTypes = ['html','htm','js','jpg','jpeg','png','css','map'];
+var correctFileTypesHeaders = ["text/html","text/html", "text/javascript","image/jpg","image/jpeg", "image/png", "text/css", "application/octet-stream"];
 
 console.log("SERVER runs on port:",PORT);
 
@@ -42,7 +43,7 @@ http.createServer(function (request, response) {
 	                    response.end();
 	                }
 	                else{
-	                    response.writeHead(200, {"Content-Type": "text/html",  'Cache-Control': 'no-cache'});
+	                    response.writeHead(200, {"Content-Type": correctFileTypesHeaders[indexOfFileType],  'Cache-Control': 'no-cache'});
 	                    response.write(data, "utf8");
 	                    response.end();
 	                }

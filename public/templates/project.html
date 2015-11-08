@@ -1,0 +1,14 @@
+<div id="page-project" ng-controller="projectController">
+	<a ui-sref="portfolio">projects</a>
+Project Detail
+
+	<div class="image_thumb">
+		<img ng-src="{{projectThumb(project)}}"/>
+	</div>
+	<span ng-bind="project.name"></span><br/>
+	<span ng-bind="project.contribution"></span><br/>
+	<span ng-bind="project.developedfor"></span><br/>
+	<span ng-bind="project.hreflink"></span><br/>
+	<span ng-bind="project.technology"></span><br/>
+	<span ng-bind="project.name"></span><br/>
+</div> 

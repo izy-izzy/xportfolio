@@ -1,53 +1,63 @@
 var gulp = require('gulp');
-var less = require('gulp-less');
+var sass = require('gulp-sass');
 var watch = require('gulp-watch');
 var concat = require('gulp-concat');
-var uglify = require('gulp-uglifyjs');
+var uglify = require('gulp-uglify');
 var gutil = require('gulp-util');
+var sourcemaps = require('gulp-sourcemaps');
 
-gulp.task('default', ['less', 'watch', 'scripts']);
+gulp.task('default', ['sass', 'scripts', 'watch' ]);
 
 gulp.task('watch', function(){
 	gulp.watch([
-		'./devel/less/*.less',
-		'./devel/less/*/*.less'
-		], ['less']);
+		'./devel/sass/*.scss',
+		'./devel/sass/*/*.scss'
+		], ['sass']);
 	gulp.watch([
 		'./devel/scripts/*.js',
 		'./devel/scripts/*/*.js',
 		], ['scripts']);
 	});
 
-gulp.task('less', function () {
-  return gulp.src('./devel/less/style.less')
-    .pipe(less().on('error', 
+gulp.task('sass', function () {
+  return gulp.src('./devel/sass/style.scss')
+  	.pipe(sourcemaps.init())
+    .pipe(sass().on('error', 
     	function(e) {
     		gutil.log(e);
     		this.emit('end');
     	})
     )
+    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('./public/css/'));
 });
 
 gulp.task('scripts', function() {
 	return gulp.src([		
-		'./devel/bower_components/jquery/dist/jquery.js',
+		'./devel/bower_components/jquery/dist/jquery.min.js',
 		'./devel/bower_components/firebase/firebase.js',
-		'./devel/bower_components/angular/angular.js',
-		'./devel/bower_components/angular-ui-router/release/angular-ui-router.js',
-		'./devel/bower_components/angularfire/dist/angularfire.js',
-		'./devel/bower_components/isotope/dist/isotope.pkgd.js',
-		'./devel/bower_components/masonry/dist/masonry.pkgd.js',
-		'./devel/bower_components/angular-isotope/dist/angular-isotope.js',
-		'./devel/bower_components/angular-animate/angular-animate.js',	
+		'./devel/bower_components/angular/angular.min.js',
+		'./devel/bower_components/angular-ui-router/release/angular-ui-router.min.js',
+		'./devel/bower_components/angularfire/dist/angularfire.min.js',
+		'./devel/bower_components/isotope/dist/isotope.pkgd.min.js',
+		'./devel/bower_components/masonry/dist/masonry.pkgd.min.js',
+		'./devel/bower_components/angular-isotope/dist/angular-isotope.min.js',
+		'./devel/bower_components/angular-animate/angular-animate.min.js',	
+		'./devel/bower_components/angulartics/dist/angulartics.min.js',	
+		'./devel/bower_components/angulartics-google-analytics/dist/angulartics-google-analytics.min.js',	
 		'./devel/scripts/app.js',
 		'./devel/scripts/*/*.js'
 		])
 	.pipe(concat('app.min.js'))
-	/*.pipe(uglify().on('error', 
+	//disable for devel 
+	/*
+	.pipe(sourcemaps.init())
+	.pipe(uglify({mangle: false}).on('error', 
     	function(e) {
     		gutil.log(e);
     		this.emit('end');
-    	}))*/
+    	}))
+	.pipe(sourcemaps.write('./'))
+	*/
 	.pipe(gulp.dest('./public/js/'))
 });
