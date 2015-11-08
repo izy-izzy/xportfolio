@@ -43,8 +43,10 @@ gulp.task('scripts', function() {
 		'./devel/bower_components/masonry/dist/masonry.pkgd.min.js',
 		'./devel/bower_components/angular-isotope/dist/angular-isotope.min.js',
 		'./devel/bower_components/angular-animate/angular-animate.min.js',	
-		'./devel/bower_components/angulartics/dist/angulartics.min.js',	
+		'./devel/bower_components/angulartics/dist/angulartics.min.js',
 		'./devel/bower_components/angulartics-google-analytics/dist/angulartics-google-analytics.min.js',	
+		/*'./devel/bower_components/analytics/analytics.min.js',
+		'./devel/bower_components/angular-google-analytics/dist/angular-google-analytics.min.js',*/
 		'./devel/scripts/app.js',
 		'./devel/scripts/*/*.js'
 		])
