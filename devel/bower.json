@@ -24,7 +24,8 @@
     "angular-isotope": "~0.1.14",
     "angular-animate": "~1.4.7",
     "angulartics-google-analytics": "~0.1.1",
-    "bootstrap-sass": "~3.3.5"
+    "bootstrap-sass": "~3.3.5",
+    "bootstrap": "~3.3.5"
   },
   "keywords": [
     "portfolio",

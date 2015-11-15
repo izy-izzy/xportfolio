@@ -1,25 +1,26 @@
 
 #page-portfolio{
-	background: white;
+	background: transparent;
+	margin-top: 100px;
 	.project{
 		&-box{
 			&.x-1{
-				width: 25%;
+				width: 12.5%;
 			}
 			&.x-2{
-				width: 50%;
+				width: 20%;
 			}
 			&.x-3{
-				width: 75%;
+				width: 27.5%;
 			}
 			&.y-1{
-				height: 25%;
+				height: 12.5%;
 			}
 			&.y-2{
-				height: 50%;
+				height: 20%;
 			}
 			&.y-3{
-				height: 75%;
+				height: 27.5%;
 			}
 			padding:15px;
 			.image_thumb{

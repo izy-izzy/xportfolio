@@ -3,6 +3,7 @@
 <head>
 	<title>Portfolio</title>
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,700,300italic,400italic,600italic' rel='stylesheet' type='text/css'>
 	<script type="text/javascript" src="./js/app.min.js"></script>
 	
 	<script>
@@ -20,10 +21,8 @@
 </head>
 <body>
 
-<a ui-sref="intro">intro</a>
-<a ui-sref="portfolio">portfolio</a>
-<a ui-sref="bio">bio</a>
-<div ui-view class="slide container-fluid"></div>
+<div ng-include="'./templates/header.html'"></div>
+<div ui-view class="reveal-animation container-fluid"></div>
 
 </body>
 </html>

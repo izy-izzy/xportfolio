@@ -1,9 +1,21 @@
+$red : #b70101;
+
 body{
 	height: 100%;
-	background-color: red;
+	background-color: white;
+	font-family: 'Source Sans Pro', Helvetica, sans-serif;
+
 }
 
 .container-fluid{
 	margin: 0px;
 	padding: 0px;
+}
+
+.reveal-animation {
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+  top: 0;
+  left: 0;
 }
