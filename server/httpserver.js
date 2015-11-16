@@ -4,8 +4,8 @@ var fs = require('fs');
 var baseDirectory = "./../public" ;
 var PORT = 8080;
 
-var correctFileTypes = ['html','htm','js','jpg','jpeg','png','css','map'];
-var correctFileTypesHeaders = ["text/html","text/html", "text/javascript","image/jpg","image/jpeg", "image/png", "text/css", "application/octet-stream"];
+var correctFileTypes = ['html','htm','js','jpg','jpeg','png','css','map','svg'];
+var correctFileTypesHeaders = ["text/html","text/html", "text/javascript","image/jpg","image/jpeg", "image/png", "text/css", "application/octet-stream", 'application/octet-stream'];
 
 console.log("SERVER runs on port:",PORT);
 

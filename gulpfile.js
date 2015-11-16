@@ -46,8 +46,9 @@ gulp.task('scripts', function() {
 		'./devel/bower_components/angular-animate/angular-animate.min.js',	
 		'./devel/bower_components/angulartics/dist/angulartics.min.js',
 		'./devel/bower_components/angulartics-google-analytics/dist/angulartics-google-analytics.min.js',	
-		/*'./devel/bower_components/analytics/analytics.min.js',
-		'./devel/bower_components/angular-google-analytics/dist/angular-google-analytics.min.js',*/
+		'./devel/_components/Snap_svg/dist/snap.svg.js',
+		'./devel/_components/tympanus/svgicons/svgicons-config.js',
+		'./devel/_components/tympanus/svgicons/svgicons.js',
 		'./devel/scripts/app.js',
 		'./devel/scripts/*/*.js'
 		])
