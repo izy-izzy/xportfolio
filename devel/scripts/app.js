@@ -1,15 +1,17 @@
 var xportfolio = angular.module('xportfolio', [
   'firebase',
   'ui.router',
-  'iso.directives',
   'ngAnimate',
   'angulartics',
-  'angulartics.google.analytics'
+  'angulartics.google.analytics',
+  //'wu.masonry',
+  'iso.directives'
 ]);
 
-xportfolio.config(function($stateProvider, $urlRouterProvider) {
+xportfolio.config(function($stateProvider, $urlRouterProvider,$locationProvider) {
 
   $urlRouterProvider.otherwise("/intro");
+  $locationProvider.html5Mode(true);
   
   $stateProvider
     .state('intro', {
@@ -27,6 +29,10 @@ xportfolio.config(function($stateProvider, $urlRouterProvider) {
     .state('project', {
       url: "/project/:projectID",
       templateUrl: "templates/project.html",
+    })
+    .state('error404',{
+      url: "/error404",
+      templateUrl: "templates/error404.html",
     });
 });
 

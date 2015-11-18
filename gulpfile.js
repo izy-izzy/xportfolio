@@ -37,12 +37,32 @@ gulp.task('scripts', function() {
 		'./devel/bower_components/jquery/dist/jquery.min.js',
 		'./devel/bower_components/bootstrap/dist/js/bootstrap.min.js',
 		'./devel/bower_components/firebase/firebase.js',
+		
+		'./devel/bower_components/jquery-bridget/jquery.bridget.js',
+		'./devel/bower_components/get-style-property/get-style-property.js',
+		'./devel/bower_components/get-size/get-size.js',
+		'./devel/bower_components/eventEmitter/EventEmitter.js',
+		'./devel/bower_components/eventie/eventie.js',
+		'./devel/bower_components/doc-ready/doc-ready.js',
+		'./devel/bower_components/matches-selector/matches-selector.js',
+		'./devel/bower_components/fizzy-ui-utils/utils.js',
+		'./devel/bower_components/outlayer/item.js',
+		'./devel/bower_components/outlayer/outlayer.js',
+
+		'./devel/bower_components/masonry/masonry.js',
+
+		'./devel/bower_components/imagesloaded/imagesloaded.js',
+
+		'./devel/bower_components/isotope/dist/isotope.pkgd.js',
 		'./devel/bower_components/angular/angular.min.js',
 		'./devel/bower_components/angular-ui-router/release/angular-ui-router.min.js',
 		'./devel/bower_components/angularfire/dist/angularfire.min.js',
-		'./devel/bower_components/isotope/dist/isotope.pkgd.min.js',
-		'./devel/bower_components/masonry/dist/masonry.pkgd.min.js',
-		'./devel/bower_components/angular-isotope/dist/angular-isotope.min.js',
+
+		'./devel/bower_components/angular-isotope/dist/angular-isotope.js',
+		'./devel/bower_components/isotope-packery/packery-mode.pkgd.js',
+		
+		//'./devel/bower_components/angular-masonry/angular-masonry.js',
+
 		'./devel/bower_components/angular-animate/angular-animate.min.js',	
 		'./devel/bower_components/angulartics/dist/angulartics.min.js',
 		'./devel/bower_components/angulartics-google-analytics/dist/angulartics-google-analytics.min.js',	

@@ -1,5 +1,5 @@
-#page-intro{
-	background-image:url('./../images/intro_bg.jpg');
+#page-error404{
+	background-image:url('./../images/error404_bg.jpg');
 	background-repeat:no-repeat;
 	background-size: cover;
 	background-position: center center;
@@ -8,6 +8,7 @@
 	position :absolute;
 	text-align:center;
 	h1{
+		color: white;
 		margin-top: 15%;
 		font-size: 36px;
 		font-weight: 300;
@@ -15,6 +16,7 @@
 	h2{
 		font-size: 24px;
 		font-weight: 300;
+		color: silver;
 	}
 	a.btn{
 		text-transform: uppercase;

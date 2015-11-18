@@ -5837,6 +5837,11 @@ body {
   top: 0;
   left: 0; }
 
+a {
+  color: #b70101; }
+  a:hover {
+    color: #ea0101; }
+
 nav {
   z-index: 1000;
   width: 100%; }
@@ -5903,7 +5908,7 @@ nav {
   position: absolute;
   text-align: center; }
   #page-intro h1 {
-    margin-top: 25%;
+    margin-top: 15%;
     font-size: 36px;
     font-weight: 300; }
   #page-intro h2 {
@@ -5922,31 +5927,121 @@ nav {
       opacity: 0.75; }
 
 #page-portfolio {
-  background: transparent;
-  margin-top: 100px; }
-  #page-portfolio .project-box {
-    padding: 15px; }
-    #page-portfolio .project-box.x-1 {
-      width: 12.5%; }
-    #page-portfolio .project-box.x-2 {
-      width: 20%; }
-    #page-portfolio .project-box.x-3 {
-      width: 27.5%; }
-    #page-portfolio .project-box.y-1 {
-      height: 12.5%; }
-    #page-portfolio .project-box.y-2 {
-      height: 20%; }
-    #page-portfolio .project-box.y-3 {
-      height: 27.5%; }
-    #page-portfolio .project-box .image_thumb {
-      width: 100%;
-      height: auto; }
-      #page-portfolio .project-box .image_thumb img {
-        width: 100%;
-        height: auto; }
-
-#page-aboutme {
   background: transparent; }
+  #page-portfolio h1 {
+    margin-top: 150px;
+    font-size: 24px;
+    text-transform: uppercase;
+    width: 100%;
+    margin-top: 100px;
+    margin-left: 15px; }
+  #page-portfolio h2 {
+    font-size: 18px;
+    font-weight: 300; }
+  #page-portfolio span.info {
+    font-size: 13px;
+    font-weight: 300; }
+  #page-portfolio .project-box {
+    cursor: pointer;
+    padding: 15px; }
+    #page-portfolio .project-box:hover {
+      background: #f2f2f2; }
+    #page-portfolio .project-box .loader {
+      width: 30%;
+      height: 1px;
+      background-color: #b70101;
+      margin-bottom: 10px; }
+    #page-portfolio .project-box.x-1 {
+      width: 200px; }
+    #page-portfolio .project-box.x-2 {
+      width: 300px; }
+    #page-portfolio .project-box.x-3 {
+      width: 400px; }
+    #page-portfolio .project-box .image_thumb {
+      background-image: url("./../images/image_loader.gif");
+      background-repeat: no-repeat;
+      background-position: center center;
+      width: 100%; }
+      #page-portfolio .project-box .image_thumb img {
+        width: 100%; }
+
+#page-bio {
+  background-image: url("./../images/bio_bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  min-height: 100%;
+  width: 100%;
+  position: absolute;
+  text-align: center; }
+  #page-bio h1 {
+    color: black;
+    margin-top: 15%;
+    font-size: 36px;
+    font-weight: 300; }
+  #page-bio h2 {
+    font-size: 24px;
+    font-weight: 300;
+    color: black;
+    width: 60%;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 60px; }
+  #page-bio a {
+    font-size: 24px;
+    color: #b70101;
+    font-weight: 300; }
+    #page-bio a.linkedin {
+      color: #006699; }
+    #page-bio a.btn.linkedin {
+      display: block;
+      border-radius: 50px;
+      width: 80px;
+      height: 80px;
+      padding: 40px;
+      margin: 0 auto;
+      background-color: #006699;
+      color: white;
+      background-image: url("./../images/linkedin.png");
+      background-size: 50%;
+      background-position: center center;
+      background-repeat: no-repeat; }
+      #page-bio a.btn.linkedin:hover {
+        background-color: #0088cc; }
+  #page-bio p {
+    margin-top: 30px;
+    font-size: 24px;
+    font-weight: 300; }
+
+#page-error404 {
+  background-image: url("./../images/error404_bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  min-height: 100%;
+  width: 100%;
+  position: absolute;
+  text-align: center; }
+  #page-error404 h1 {
+    color: white;
+    margin-top: 15%;
+    font-size: 36px;
+    font-weight: 300; }
+  #page-error404 h2 {
+    font-size: 24px;
+    font-weight: 300;
+    color: silver; }
+  #page-error404 a.btn {
+    text-transform: uppercase;
+    color: black;
+    margin-top: 20px;
+    padding: 15px 30px;
+    background: white;
+    border-radius: 45px;
+    font-size: 16px;
+    font-weight: 400; }
+    #page-error404 a.btn:hover {
+      opacity: 0.75; }
 
 .si-icons span {
   display: inline-block;

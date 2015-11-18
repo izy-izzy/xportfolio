@@ -1,13 +1,20 @@
-<div id="page-portfolio" ng-controller="portfolioController" isotope-container="isotope-container">
-	<div ng-repeat="project in projects" class="project-box" ng-class="projectXY(project)" isotope-item="isotope-item" ng-click="showProject($index)">
-		<div class="image_thumb">
-			<img ng-src="{{projectThumb(project)}}"/>
+<div id="page-portfolio" ng-controller="portfolioController">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1> Projects </h1>
+			</div>
 		</div>
-		<span ng-bind="project.name"></span><br/>
-		<span ng-bind="project.contribution"></span><br/>
-		<span ng-bind="project.developedfor"></span><br/>
-		<span ng-bind="project.hreflink"></span><br/>
-		<span ng-bind="project.technology"></span><br/>
-		<span ng-bind="project.name"></span><br/>
+
+		<div isotope-container>
+			<div ng-repeat="project in projects" class="project-box masonry-brick" ng-class="projectXY(project)" isotope-item="isotope-item" ng-click="showProject($index)">
+				<div class="image_thumb">
+					<img ng-src="{{projectThumb(project)}}"/>
+				</div>
+				<h2 ng-bind="project.name"></h2>
+				<div class="loader"></div>
+				<span ng-bind="project.contribution" class="info"></span><br/>
+			</div>
+		</div>
 	</div>
 </div>

@@ -4,10 +4,25 @@ var fs = require('fs');
 var baseDirectory = "./../public" ;
 var PORT = 8080;
 
-var correctFileTypes = ['html','htm','js','jpg','jpeg','png','css','map','svg'];
-var correctFileTypesHeaders = ["text/html","text/html", "text/javascript","image/jpg","image/jpeg", "image/png", "text/css", "application/octet-stream", 'application/octet-stream'];
+var correctFileTypes = ['html','htm','js','jpg','jpeg','png','css','map','svg','gif'];
+var correctFileTypesHeaders = ["text/html","text/html", "text/javascript","image/jpg","image/jpeg", "image/png", "text/css", "application/octet-stream", 'application/octet-stream', "image/gif"];
 
 console.log("SERVER runs on port:",PORT);
+
+    var loadpage = function(response){
+		 fs.readFile('./../public/index.html', function(error, data){
+            if (error){
+                response.writeHead(404);
+                response.write("opps this doesn't exist - 404");
+                response.end();
+            }
+            else{
+                response.writeHead(200, {"Content-Type": "text/html",  'Cache-Control': 'no-cache'});
+                response.write(data, "utf8");
+                response.end();
+            }
+        });
+    };
 
 http.createServer(function (request, response) {
    	var requestUrl = url.parse(request.url);
@@ -15,22 +30,16 @@ http.createServer(function (request, response) {
    	var fsPath = baseDirectory+requestUrl.pathname;
    	console.log("requested filepath:",fsPath);
 
+	console.log('path',path);
 
-     	switch(path){
-	        case '/':
-	            fs.readFile('./../public/index.html', function(error, data){
-	                if (error){
-	                    response.writeHead(404);
-	                    response.write("opps this doesn't exist - 404");
-	                    response.end();
-	                }
-	                else{
-	                    response.writeHead(200, {"Content-Type": "text/html",  'Cache-Control': 'no-cache'});
-	                    response.write(data, "utf8");
-	                    response.end();
-	                }
-	            });
-	            break;
+  
+	var regPorjects = /project\/[0-9]/;
+	var found = regPorjects.test(path) || path == '/portfolio' || path == '/bio' || path == '/intro' || path == '/project' || path =='/error404';
+
+     	switch(found){
+	        case true:
+	           loadpage(response);
+	           break;
 	        default:
 	        	var splicedpath = path.split(".");
 	        	var filetype = splicedpath[splicedpath.length -1];
@@ -55,5 +64,5 @@ http.createServer(function (request, response) {
 	            response.end();
 	            break;
         }
-    
+   
 }).listen(PORT);
