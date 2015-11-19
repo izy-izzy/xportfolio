@@ -1,0 +1,23 @@
+<div id="page-image" ng-controller="projectImageController">
+	<div class="container-fluid">
+		<div class="row navigation">
+			<div class="col-md-12">
+				<a ui-sref="project({ projectID: project.id })" class="back"><span class="glyphicon glyphicon-chevron-left"></span> back to project</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h1 ng-bind="project.name"></h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="image_loader">
+					<a ng-click="goToImage('prev')" class="stateChange prev"><span class="glyphicon glyphicon-chevron-left"></span> prev</a>
+					<a ng-click="goToImage('next')" class="stateChange next">next <span class="glyphicon glyphicon-chevron-right"></span></a>
+					<img class="main_image" ng-src="{{getImage(index)}}" imageonload/>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> 

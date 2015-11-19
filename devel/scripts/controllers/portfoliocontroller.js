@@ -10,19 +10,14 @@ xportfolio.controller("portfolioController", function($scope, portfolioProjectsS
     $scope.projectCategories.push("all");
 
     $scope.projects.$loaded(function(){
-        //$scope.$emit('iso-option', {layoutMode: 'packery'});
-        //$scope.$emit('iso-method', {name:'layout', params:null});
         angular.forEach($scope.projects, function(object, key){
-            console.log(key, object.categories);
             angular.forEach(object.categories, function(category,key){
-                console.log("N",key,category)
                 if ($scope.projectCategories.indexOf(key) == -1){
                     $scope.projectCategories.push(key);
                 }
 
             });
         })
-        console.log($scope.projectCategories);
     });
 
     $timeout(function(){
@@ -31,8 +26,9 @@ xportfolio.controller("portfolioController", function($scope, portfolioProjectsS
         $scope.$emit('iso-method', {name:'layout', params:null});
     },500);
 
-    $('body').on('DOMNodeInserted', '.project-box', function () {
+    jQuery('body').on('DOMNodeInserted', '.project-box', function () {
         $scope.rollOut(jQuery(this)[0].id);
+        console.log(jQuery(this)[0].id);
     });
 
     $scope.rollOut = function(id){

@@ -1,0 +1,103 @@
+#page-project{
+	.navigation{
+		margin-bottom: 100px;
+		a.back{
+			display: inline-block;
+			width: auto;
+			padding: 20px 20px 20px 0px;
+			margin-top: 150px;
+			color: black;
+			text-decoration: none;
+			text-transform: uppercase;
+			&:hover{
+				color: $red;
+			}
+		}
+	}
+	.project-info{
+		h2.perex{
+			font-size: 16px;
+			font-weight: 300;
+			font-style: italic;
+		}
+		h3.desc{
+			font-size: 14px;
+			font-weight: 500;
+		}
+		.info-block{
+			h2{
+				margin-bottom: 0px;
+				font-size: 14px;
+				font-weight: 700;
+			}
+			.info-text{
+				font-size: 14px;
+				font-weight: 300;
+			}
+		}
+		.navigation-projects{
+			margin-top: 60px;
+			a{
+				width: auto;
+				cursor: pointer;
+				display: block;
+				padding: 10px 25px;
+				background-color: black;
+				color: white;
+				text-decoration: none;
+				text-transform: uppercase;
+				&:hover{
+					color: white;
+					background-color: gray;
+				}
+			}
+		}
+	}
+	h1{
+		font-size: 24px;
+		text-transform: uppercase;
+		width: 100%;
+	}
+	.image_thumb{
+		min-height: 80px;
+		min-width: 80px;
+		&.x-0{
+			width: 100px;
+		}
+		&.x-1{
+			width: 200px;
+		}
+		&.x-2{
+			width: 300px;
+		}
+		&.x-3{
+			width: 400px;
+		}
+		&.x-4{
+			width: 500px;
+		}
+		padding: 20px;
+		height: auto;
+		display: block;
+		float:left;
+		background-image: url('./../images/image_loader.gif');
+		background-repeat: no-repeat;
+		background-position: center center;
+		cursor:pointer;
+		img{
+			opacity: 0;
+			width: 100%;
+			-webkit-transition: all 0.5s ease-in-out;
+			-moz-transition: all 0.5s ease-in-out;
+			-ms-transition: all 0.5s ease-in-out;
+			-o-transition: all 0.5s ease-in-out;
+			transition: all 0.5s ease-in-out;
+			&.loaded{
+				opacity: 1;
+			}
+		}
+		&:hover{
+			background-color: rgba(0,0,0,0.05);
+		}
+	}
+}

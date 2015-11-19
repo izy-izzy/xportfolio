@@ -5,7 +5,8 @@ var xportfolio = angular.module('xportfolio', [
   'angulartics',
   'angulartics.google.analytics',
   //'wu.masonry',
-  'iso.directives'
+  'iso.directives',
+  'angular-images-loaded'
 ]);
 
 xportfolio.config(function($stateProvider, $urlRouterProvider,$locationProvider) {
@@ -29,6 +30,10 @@ xportfolio.config(function($stateProvider, $urlRouterProvider,$locationProvider)
     .state('project', {
       url: "/project/:projectID",
       templateUrl: "templates/project.html",
+    })
+    .state('projectimage', {
+      url: "/project/:projectID/image/:imageID",
+      templateUrl: "templates/projectimage.html",
     })
     .state('error404',{
       url: "/error404",

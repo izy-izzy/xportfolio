@@ -1,14 +1,52 @@
 <div id="page-project" ng-controller="projectController">
-	<a ui-sref="portfolio">projects</a>
-Project Detail
+	<div class="container-fluid">
+		<div class="row navigation">
+			<div class="col-md-12">
+				<a ui-sref="portfolio" class="back"><span class="glyphicon glyphicon-chevron-left"></span> back to projects</a>
+			</div>
+		</div>
+		<div class="row project-info">
+			<div class="col-md-3 col-sm-9 clearfix">
+				<h1 ng-bind="project.name"></h1>
+				<div ng-if="project.perex">
+					<h2 ng-bind="project.perex" class="perex"></h2>
+				</div>
+				<div ng-if="project.desc">
+					<h3 ng-bind="project.perex" class="desc"></h2>
+				</div>
 
-	<div class="image_thumb">
-		<img ng-src="{{projectThumb(project)}}"/>
+				<div ng-if="project.contribution" class="info-block">
+					<h2>Contribution</h2>
+					<span ng-bind="project.contribution" class="info-text"></span>
+				</div>
+				<div ng-if="project.developedfor" class="info-block">
+					<h2>Developed for</h2>
+					<span ng-bind="project.developedfor" class="info-text"></span>
+				</div>
+				<div ng-if="project.hreflink" class="info-block">
+					<h2>Link</h2>
+					<a href="{{project.hreflink}}" target="_blank" class="info-text" ng-bind="project.hreflink"></a>
+				</div>
+				<div ng-if="project.technology" class="info-block">
+					<h2>Used technology</h2>
+					<span ng-bind="project.technology" class="info-text"></span>
+				</div>
+				<div class="navigation-projects">
+					<a ng-click="goToProject('prev')" class="pull-left prev"><span class="glyphicon glyphicon-chevron-left"></span> prev </a>
+					<a ng-click="goToProject('next')" class="pull-right next"> next <span class="glyphicon glyphicon-chevron-right"></span> </a>
+				</div>
+			</div>
+			<div class="col-md-9 clearfix col-sm-12" >
+				<div isotope-container>
+					<div ng-repeat="i in projectImagesCount()" isotope-item class="image_thumb" ng-class="getPictureClass($index)">
+						<img  
+						 ng-src="{{projectImage($index)}}"
+						 ng-attr-id="{{ 'image-' + $index }}"
+						 ng-click="showPictureDetail($index)" 
+						 imageonload/>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-	<span ng-bind="project.name"></span><br/>
-	<span ng-bind="project.contribution"></span><br/>
-	<span ng-bind="project.developedfor"></span><br/>
-	<span ng-bind="project.hreflink"></span><br/>
-	<span ng-bind="project.technology"></span><br/>
-	<span ng-bind="project.name"></span><br/>
 </div> 

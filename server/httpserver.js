@@ -4,8 +4,8 @@ var fs = require('fs');
 var baseDirectory = "./../public" ;
 var PORT = 8080;
 
-var correctFileTypes = ['html','htm','js','jpg','jpeg','png','css','map','svg','gif'];
-var correctFileTypesHeaders = ["text/html","text/html", "text/javascript","image/jpg","image/jpeg", "image/png", "text/css", "application/octet-stream", 'application/octet-stream', "image/gif"];
+var correctFileTypes = ['html','htm','js','jpg','jpeg','png','css','map','svg','gif', 'eot', 'ttf', 'woff', 'woff2'];
+var correctFileTypesHeaders = ["text/html","text/html", "text/javascript","image/jpg","image/jpeg", "image/png", "text/css", "application/octet-stream", 'application/octet-stream', "image/gif", 'application/octet-stream', 'application/octet-stream', 'application/octet-stream', 'application/octet-stream'];
 
 console.log("SERVER runs on port:",PORT);
 
@@ -33,8 +33,16 @@ http.createServer(function (request, response) {
 	console.log('path',path);
 
   
-	var regPorjects = /project\/[0-9]/;
-	var found = regPorjects.test(path) || path == '/' || path == '/portfolio' || path == '/bio' || path == '/intro' || path == '/project' || path =='/error404';
+	var regProjects = /project\/[0-9]/;
+	var regProjectsPicture = /project\/[0-9]\/image\/[0-9]/;
+	var found = regProjects.test(path) 
+				|| regProjectsPicture.test(path) 
+				|| path == '/' 
+				|| path == '/portfolio' 
+				|| path == '/bio' 
+				|| path == '/intro' 
+				|| path == '/project' 
+				|| path =='/error404';
 
      	switch(found){
 	        case true:
