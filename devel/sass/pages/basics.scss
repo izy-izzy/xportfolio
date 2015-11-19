@@ -10,6 +10,10 @@ body{
 .container-fluid{
 	margin: 0px;
 	padding: 0px;
+	.row{
+		margin-left: 0px;
+		margin-right: 0px;
+	}
 }
 
 .reveal-animation {

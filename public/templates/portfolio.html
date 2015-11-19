@@ -6,10 +6,21 @@
 			</div>
 		</div>
 
+		<div class="row filters">
+			<div class="btn-group" opt-kind ok-key="filter">
+				<a ng-repeat="category in projectCategories" class='filter' ok-sel=".{{category}}">{{category}}</a>
+			</div>
+		</div>
 		<div isotope-container>
-			<div ng-repeat="project in projects" class="project-box masonry-brick" ng-class="projectXY(project)" isotope-item="isotope-item" ng-click="showProject($index)">
-				<div class="image_thumb">
-					<img ng-src="{{projectThumb(project)}}"/>
+			<div isotope-item
+				 ng-repeat="project in projects" 
+				 class="project-box kindling"  
+				 ng-class="projectClass(project)" 
+				 isotope-item="isotope-item" 
+				 ng-click="showProject($index)" 
+				 ng-attr-id="{{ 'project-' + $index }}">
+
+				<div class="image_thumb" ng-class="projectY(project)" ng-style="{'background-image':'url({{projectThumb(project)}})'}">
 				</div>
 				<h2 ng-bind="project.name"></h2>
 				<div class="loader"></div>

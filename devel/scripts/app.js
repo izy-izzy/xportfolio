@@ -15,7 +15,7 @@ xportfolio.config(function($stateProvider, $urlRouterProvider,$locationProvider)
   
   $stateProvider
     .state('intro', {
-      url: "/intro",
+      url: "/",
       templateUrl: "templates/intro.html"
     })
     .state('portfolio', {

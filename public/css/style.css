@@ -5829,6 +5829,9 @@ body {
 .container-fluid {
   margin: 0px;
   padding: 0px; }
+  .container-fluid .row {
+    margin-left: 0px;
+    margin-right: 0px; }
 
 .reveal-animation {
   position: absolute;
@@ -5933,24 +5936,48 @@ nav {
     font-size: 24px;
     text-transform: uppercase;
     width: 100%;
-    margin-top: 100px;
-    margin-left: 15px; }
+    margin-top: 100px; }
   #page-portfolio h2 {
     font-size: 18px;
     font-weight: 300; }
   #page-portfolio span.info {
     font-size: 13px;
     font-weight: 300; }
+  #page-portfolio .filters {
+    margin-left: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px; }
+    #page-portfolio .filters .filter {
+      display: inline-block;
+      color: black;
+      font-size: 13px;
+      text-transform: uppercase;
+      font-weight: 300;
+      margin-right: 40px;
+      cursor: pointer;
+      padding-right: 20px;
+      border-bottom: 3px solid white; }
+      #page-portfolio .filters .filter:hover, #page-portfolio .filters .filter.active {
+        color: #b70101;
+        text-decoration: none;
+        border-bottom: 3px solid #b70101; }
   #page-portfolio .project-box {
+    opacity: 0.01;
     cursor: pointer;
+    background-image: url("./../images/image_loader.gif");
+    background-repeat: no-repeat;
+    background-position: center center;
     padding: 15px; }
     #page-portfolio .project-box:hover {
-      background: #f2f2f2; }
+      background-color: rgba(0, 0, 0, 0.05); }
+    #page-portfolio .project-box.loaded {
+      opacity: 1; }
     #page-portfolio .project-box .loader {
-      width: 30%;
+      width: 0px;
       height: 1px;
       background-color: #b70101;
-      margin-bottom: 10px; }
+      margin-bottom: 10px;
+      opacity: 0.25; }
     #page-portfolio .project-box.x-1 {
       width: 200px; }
     #page-portfolio .project-box.x-2 {
@@ -5958,10 +5985,15 @@ nav {
     #page-portfolio .project-box.x-3 {
       width: 400px; }
     #page-portfolio .project-box .image_thumb {
-      background-image: url("./../images/image_loader.gif");
-      background-repeat: no-repeat;
-      background-position: center center;
+      background-position: center;
+      background-size: cover;
       width: 100%; }
+      #page-portfolio .project-box .image_thumb.y-1 {
+        height: 150px; }
+      #page-portfolio .project-box .image_thumb.y-2 {
+        height: 200px; }
+      #page-portfolio .project-box .image_thumb.y-3 {
+        height: 250px; }
       #page-portfolio .project-box .image_thumb img {
         width: 100%; }
 

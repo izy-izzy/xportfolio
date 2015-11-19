@@ -34,7 +34,7 @@ http.createServer(function (request, response) {
 
   
 	var regPorjects = /project\/[0-9]/;
-	var found = regPorjects.test(path) || path == '/portfolio' || path == '/bio' || path == '/intro' || path == '/project' || path =='/error404';
+	var found = regPorjects.test(path) || path == '/' || path == '/portfolio' || path == '/bio' || path == '/intro' || path == '/project' || path =='/error404';
 
      	switch(found){
 	        case true:

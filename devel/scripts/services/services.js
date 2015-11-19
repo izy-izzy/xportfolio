@@ -1,8 +1,8 @@
-xportfolio.service('portfolioProjectsService', function($firebaseObject) {
+xportfolio.service('portfolioProjectsService', function($firebaseArray, $firebaseObject) {
     this.getProject = function(index) {
             return $firebaseObject(new Firebase("https://xportfolio.firebaseio.com/projects/"+index));
         }
     this.getAllProjects = function() {
-            return $firebaseObject(new Firebase("https://xportfolio.firebaseio.com/projects/"));
+            return $firebaseArray(new Firebase("https://xportfolio.firebaseio.com/projects/"));
         }
 });
