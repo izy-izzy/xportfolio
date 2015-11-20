@@ -4,9 +4,9 @@ var xportfolio = angular.module('xportfolio', [
   'ngAnimate',
   'angulartics',
   'angulartics.google.analytics',
-  //'wu.masonry',
   'iso.directives',
-  'angular-images-loaded'
+  'angular-images-loaded',
+  'ngTouch'
 ]);
 
 xportfolio.config(function($stateProvider, $urlRouterProvider,$locationProvider) {

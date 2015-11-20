@@ -74,6 +74,7 @@ gulp.task('scripts', ['coffee'], function() {
 		//'./devel/bower_components/angular-masonry/angular-masonry.js',
 
 		'./devel/bower_components/angular-images-loaded/angular-images-loaded.js',
+		'./devel/bower_components/angular-touch/angular-touch.min.js',
 
 		'./devel/bower_components/angular-animate/angular-animate.min.js',	
 		'./devel/bower_components/angulartics/dist/angulartics.min.js',
