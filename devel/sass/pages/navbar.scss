@@ -22,6 +22,10 @@ nav{
 }
 
 .navbar-brand{
+	padding:0px;
+	img {
+		max-height: 100%;
+	}
 	margin-left:0px !important;
 }
 
