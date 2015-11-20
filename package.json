@@ -8,6 +8,7 @@
     "fd": "0.0.2",
     "fs": "0.0.2",
     "gulp": "^3.9.0",
+    "gulp-coffee": "^2.3.1",
     "gulp-concat": "^2.6.0",
     "gulp-cssshrink": "^0.1.5",
     "gulp-sass": "^2.1.0",

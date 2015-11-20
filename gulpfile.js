@@ -5,17 +5,20 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var gutil = require('gulp-util');
 var sourcemaps = require('gulp-sourcemaps');
+var coffee = require('gulp-coffee');
 
-gulp.task('default', ['sass', 'scripts', 'watch' ]);
+gulp.task('default', ['sass', 'scripts', 'watch']);
 
 gulp.task('watch', function(){
 	gulp.watch([
-		'./devel/sass/*.scss',
-		'./devel/sass/*/*.scss'
+		'/devel/sass/*.scss',
+		'/devel/sass/*/*.scss'
 		], ['sass']);
 	gulp.watch([
-		'./devel/scripts/*.js',
-		'./devel/scripts/*/*.js',
+		'/devel/scripts/*.coffee',
+		'/devel/scripts/*/*.coffee',
+		'/devel/scripts/*.js',
+		'/devel/scripts/*/*.js',
 		], ['scripts']);
 	});
 
@@ -32,8 +35,15 @@ gulp.task('sass', function () {
     .pipe(gulp.dest('./public/css/'));
 });
 
-gulp.task('scripts', function() {
-	return gulp.src([		
+gulp.task('coffee', function() {
+  return gulp.src('./devel/scripts/*.coffee')
+    .pipe(coffee({bare: true}).on('error', gutil.log))
+    .pipe(gulp.dest('./devel/scripts/'))
+});
+
+gulp.task('scripts', ['coffee'], function() {
+	return gulp.src([
+		'./devel/bower_components/js-polyfills/polyfill.min.js',
 		'./devel/bower_components/jquery/dist/jquery.min.js',
 		'./devel/bower_components/bootstrap/dist/js/bootstrap.min.js',
 		'./devel/bower_components/firebase/firebase.js',
@@ -71,6 +81,7 @@ gulp.task('scripts', function() {
 		'./devel/_components/Snap_svg/dist/snap.svg.js',
 		'./devel/_components/tympanus/svgicons/svgicons-config.js',
 		'./devel/_components/tympanus/svgicons/svgicons.js',
+		'./devel/scripts/coffee-scripts.js',
 		'./devel/scripts/app.js',
 		'./devel/scripts/*/*.js'
 		])
