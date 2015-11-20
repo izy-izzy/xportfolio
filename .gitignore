@@ -45,3 +45,4 @@ node_modules
 devel/bower_components/
 design
 public/images/projects
+public/css/style.css.map

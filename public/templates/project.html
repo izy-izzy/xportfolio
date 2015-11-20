@@ -1,5 +1,5 @@
 <div id="page-project" ng-controller="projectController">
-	<div class="container-fluid">
+	<div class="container-fluid" ng-swipe-left="goToProject('next')" ng-swipe-right="goToProject('next')">
 		<div class="row navigation">
 			<div class="col-md-12">
 				<a ui-sref="portfolio" class="back"><span class="glyphicon glyphicon-chevron-left"></span> back to projects</a>
