@@ -14,11 +14,12 @@ nav{
 	margin-right: 0px;
 }
 .navbar-default .navbar-collapse{
-	background: white;
+	background: transparent;
 }
 
 .navbar-default{
-	background: white !important;
+	background-color: white;
+	background-color:rgba(255,255,255,0.85) !important;
 }
 
 .navbar-brand{
@@ -53,7 +54,7 @@ nav{
 .navbar-nav{
 	float :right;
 	& > li{
-		background: white;
+		background: transparent;
 		a{
 			font-size: 12px;
 			text-transform: uppercase;
@@ -69,11 +70,29 @@ nav{
 			
 		}
 		a.active{
-			background-color: white !important;
+			background-color: transparent !important;
 			span{
 				border-bottom:3px solid $red;
 				
 			}
 		}
 	}
+}
+
+.navbar-collapse{
+	ul{
+		margin-top: 0px;
+		margin-right: -10px;
+		float: right;
+		li{
+			display: inline-block;
+			a{
+				padding: 0px 15px 0px 15px;
+			}
+		}
+	}
+}
+
+.navbar-toggle{
+	margin-right:15px;
 }

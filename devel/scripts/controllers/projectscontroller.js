@@ -1,5 +1,5 @@
-xportfolio.controller("portfolioController", function($scope, portfolioProjectsService, $state, $timeout) {
-    console.log("portfolio");
+xportfolio.controller("projectsController", function($scope, portfolioProjectsService, $state, $timeout) {
+    console.log("projects");
 
     $scope.projects = portfolioProjectsService.getAllProjects();
 

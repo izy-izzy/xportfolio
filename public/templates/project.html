@@ -1,12 +1,12 @@
-<div id="page-project" ng-controller="projectController">
+<div id="page-project" class="page" ng-controller="projectController">
 	<div class="container-fluid" ng-swipe-left="goToProject('next')" ng-swipe-right="goToProject('next')">
 		<div class="row navigation">
 			<div class="col-md-12">
-				<a ui-sref="portfolio" class="back"><span class="glyphicon glyphicon-chevron-left"></span> back to projects</a>
+				<a ui-sref="projects" class="back"><span class="glyphicon glyphicon-chevron-left"></span> back to projects</a>
 			</div>
 		</div>
 		<div class="row project-info">
-			<div class="col-md-3 col-sm-9 clearfix">
+			<div class="col-md-3 col-sm-12 clearfix">
 				<h1 ng-bind="project.name"></h1>
 				<div ng-if="project.perex">
 					<h2 ng-bind="project.perex" class="perex"></h2>
@@ -38,14 +38,12 @@
 			</div>
 			<div class="col-md-9 clearfix col-sm-12" >
 				<div isotope-container>
-					<div>
-						<div ng-repeat="i in projectImagesCount()" isotope-item class="image_thumb" ng-class="getPictureClass($index)" >
-							<img  
-							 ng-src="{{projectImage($index)}}"
-							 ng-attr-id="{{ 'image-' + $index }}"
-							 ng-click="showPictureDetail($index)" 
-							 imageonload/>
-						</div>
+					<div ng-repeat="i in projectImagesCount()" isotope-item class="image_thumb" ng-class="getPictureClass($index)" >
+						<img  
+						 ng-src="{{projectImage($index)}}"
+						 ng-attr-id="{{ 'image-' + $index }}"
+						 ng-click="showPictureDetail($index)" 
+						 imageonload/>
 					</div>
 				</div>
 			</div>

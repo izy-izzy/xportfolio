@@ -16,6 +16,41 @@ body{
 	}
 }
 
+.imageLoading{
+	background-image: url('./../images/image_loader.gif');
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.page{
+	padding-top: 100px;
+	.navigation{
+		margin-bottom: 0px;
+		a.back{
+			display: inline-block;
+			width: auto;
+			padding: 20px 20px 20px 0px;
+			color: black;
+			text-decoration: none;
+			text-transform: uppercase;
+			&:hover{
+				color: $red;
+			}
+		}
+	}
+	h1{
+		font-size: 24px;
+		text-transform: uppercase;
+		width: 100%;
+	}
+}
+
+.navbar-brand{
+	&:hover{
+		opacity: 0.75;
+	}
+}
+
 .reveal-animation {
   position: absolute;
   width: 100%;
@@ -25,8 +60,39 @@ body{
 }
 
 a{
+	@include transition(all 0.25s ease);
 	color: $red;
 	&:hover{
 		color: lighten($red, 10%);
 	}
 }
+
+
+
+@media screen and (max-width: $screen-tablet){
+	.page{
+		padding-top: 40px;
+	}
+	.navbar{
+		.container-fluid{
+			padding: 0px;
+		}
+		.navbar-brand{
+			margin:10px 10px 10px 10px !important;
+			height: 32px;
+			width: 32px;
+		}
+	}
+}
+
+@media screen and (max-width: $screen-phone){
+	.container-fluid{
+		margin: 0px;
+		padding: 0px;
+		.row{
+			margin-left: 0px;
+			margin-right: 0px;
+		}
+	}
+}
+

@@ -20,9 +20,9 @@ xportfolio.config(function($stateProvider, $urlRouterProvider,$locationProvider)
       url: "/",
       templateUrl: "templates/intro.html"
     })
-    .state('portfolio', {
-      url: "/portfolio",
-      templateUrl: "templates/portfolio.html",
+    .state('projects', {
+      url: "/projects",
+      templateUrl: "templates/projects.html",
     })
     .state('bio', {
       url: "/bio",
@@ -40,5 +40,7 @@ xportfolio.config(function($stateProvider, $urlRouterProvider,$locationProvider)
       url: "/error404",
       templateUrl: "templates/error404.html",
     });
+}).run(function($rootScope, $state) {
+  $rootScope.$state = $state;
 });
 

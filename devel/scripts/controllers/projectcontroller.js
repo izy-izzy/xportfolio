@@ -1,5 +1,6 @@
 xportfolio.controller("projectController", function($state, $scope, $stateParams, portfolioProjectsService,$timeout) {
     $scope.projectId = $stateParams.projectID;
+    console.log($scope.projectId);
     $scope.project = portfolioProjectsService.getProject($scope.projectId);
     $scope.allProjects = portfolioProjectsService.getAllProjects();
 

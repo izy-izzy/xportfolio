@@ -38,7 +38,7 @@ http.createServer(function (request, response) {
 	var found = regProjects.test(path) 
 				|| regProjectsPicture.test(path) 
 				|| path == '/' 
-				|| path == '/portfolio' 
+				|| path == '/projects' 
 				|| path == '/bio' 
 				|| path == '/intro' 
 				|| path == '/project' 
