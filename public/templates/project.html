@@ -38,12 +38,14 @@
 			</div>
 			<div class="col-md-9 clearfix col-sm-12" >
 				<div isotope-container>
-					<div ng-repeat="i in projectImagesCount()" isotope-item class="image_thumb" ng-class="getPictureClass($index)">
-						<img  
-						 ng-src="{{projectImage($index)}}"
-						 ng-attr-id="{{ 'image-' + $index }}"
-						 ng-click="showPictureDetail($index)" 
-						 imageonload/>
+					<div>
+						<div ng-repeat="i in projectImagesCount()" isotope-item class="image_thumb" ng-class="getPictureClass($index)" >
+							<img  
+							 ng-src="{{projectImage($index)}}"
+							 ng-attr-id="{{ 'image-' + $index }}"
+							 ng-click="showPictureDetail($index)" 
+							 imageonload/>
+						</div>
 					</div>
 				</div>
 			</div>

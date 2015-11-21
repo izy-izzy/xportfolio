@@ -28,23 +28,24 @@ gulp.task('test', function() {
 
 gulp.task('autotest', function() {
   return gulp.watch([
-  	'/devel/assets/js/**/*.js',
-  	'/devel/tests/*.js'], ['test']);
+  	'./devel/assets/js/**/*.js',
+  	'./devel/tests/*.js'
+  	],['test']);
 });
 
-gulp.task('default', ['sass', 'scripts', 'watch']);
+gulp.task('default', ['sass', 'scripts', 'test','watch']);
 
 gulp.task('watch', function(){
 	gulp.watch([
-		'/devel/sass/*.scss',
-		'/devel/sass/*/*.scss'
+		'./devel/sass/*.scss',
+		'./devel/sass/*/*.scss'
 		], ['sass']);
 	gulp.watch([
-		'/devel/scripts/*.coffee',
-		'/devel/scripts/*/*.coffee',
-		'/devel/scripts/*.js',
-		'/devel/scripts/*/*.js',
-		], ['scripts']);
+		'./devel/scripts/*.coffee',
+		'./devel/scripts/*/*.coffee',
+		'./devel/scripts/*.js',
+		'./devel/scripts/*/*.js',
+		], ['scripts', 'test']);
 	});
 
 gulp.task('sass', function () {
@@ -93,6 +94,8 @@ gulp.task('scripts', ['coffee'], function() {
 		'./devel/bower_components/angular-ui-router/release/angular-ui-router.min.js',
 		'./devel/bower_components/angularfire/dist/angularfire.min.js',
 
+		'./devel/bower_components/angular-adaptive-detection/angular-adaptive-detection.min.js',
+
 		'./devel/bower_components/angular-isotope/dist/angular-isotope.js',
 		'./devel/bower_components/isotope-packery/packery-mode.pkgd.js',
 		
@@ -108,8 +111,12 @@ gulp.task('scripts', ['coffee'], function() {
 		'./devel/_components/tympanus/svgicons/svgicons-config.js',
 		'./devel/_components/tympanus/svgicons/svgicons.js',
 		'./devel/scripts/coffee-scripts.js',
-		'./devel/scripts/app.js',
-		'./devel/scripts/*/*.js'
+        './devel/scripts/app.js',
+        './devel/scripts/animations/*.js',
+        './devel/scripts/directives/*.js',
+        './devel/scripts/services/*.js',
+        './devel/scripts/factories/*.js',
+        './devel/scripts/controllers/*.js',
 		])
 	.pipe(concat('app.min.js'))
 	//disable for devel 

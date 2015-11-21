@@ -1,8 +1,10 @@
-xportfolio.controller("projectImageController", function($state, $scope, $stateParams, portfolioProjectsService,$timeout) {
+xportfolio.controller("projectImageController", function($state, $scope, $stateParams, portfolioProjectsService,$timeout, mobileDetectionFactory) {
 	console.log('projectImageController');
 	$scope.projectId = $stateParams.projectID;
 	$scope.imageId = $stateParams.imageID;
     $scope.project = portfolioProjectsService.getProject($scope.projectId);
+
+    $scope.mobileDevice = mobileDetectionFactory.isMobile();
 
     $scope.getImage = function(index){
     	return "./images/projects/"+$scope.project.image_prefix+"_"+$scope.imageId+".jpg";

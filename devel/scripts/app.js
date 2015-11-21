@@ -6,7 +6,8 @@ var xportfolio = angular.module('xportfolio', [
   'angulartics.google.analytics',
   'iso.directives',
   'angular-images-loaded',
-  'ngTouch'
+  'ngTouch',
+  'adaptive.detection'
 ]);
 
 xportfolio.config(function($stateProvider, $urlRouterProvider,$locationProvider) {

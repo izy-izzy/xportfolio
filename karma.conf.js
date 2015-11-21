@@ -40,6 +40,8 @@ module.exports = function(config) {
         './devel/bower_components/angular-ui-router/release/angular-ui-router.min.js',
         './devel/bower_components/angularfire/dist/angularfire.min.js',
 
+        './devel/bower_components/angular-adaptive-detection/angular-adaptive-detection.min.js',
+
         './devel/bower_components/angular-isotope/dist/angular-isotope.js',
         './devel/bower_components/isotope-packery/packery-mode.pkgd.js',
         
@@ -61,9 +63,10 @@ module.exports = function(config) {
         './devel/scripts/app.js',
         './devel/scripts/animations/*.js',
         './devel/scripts/directives/*.js',
+        './devel/scripts/services/*.js',
+        './devel/scripts/factories/*.js',
         './devel/scripts/controllers/*.js',
         './devel/scripts/tests/*.js'
-
     ],
 
 
@@ -104,6 +107,7 @@ module.exports = function(config) {
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: ['PhantomJS'],
+    //browsers: ['Chrome'],
 
 
     // Continuous Integration mode

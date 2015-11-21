@@ -32,7 +32,8 @@
     "angular-images-loaded": "~0.0.8",
     "js-polyfills": "~0.1.12",
     "angular-touch": "~1.4.8",
-    "angular-mocks": "~1.4.8"
+    "angular-mocks": "~1.4.8",
+    "angular-adaptive-detection": "~0.4.1"
   },
   "keywords": [
     "portfolio",
