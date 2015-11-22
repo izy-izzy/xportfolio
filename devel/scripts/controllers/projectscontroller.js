@@ -1,13 +1,15 @@
 xportfolio.controller("projectsController", function($scope, portfolioProjectsService, $state, $timeout) {
-    console.log("projects");
+    console.log("projectsController");
 
+    $scope.checked = true;
     $scope.projects = portfolioProjectsService.getAllProjects();
 
     $scope.$emit('iso-option', {layoutMode: 'packery'});
     $scope.$emit('iso-method', {name:'layout', params:null});
-
+    
     $scope.projectCategories = [];
     $scope.projectCategories.push("all");
+
 
     $scope.projects.$loaded(function(){
         angular.forEach($scope.projects, function(object, key){
@@ -15,31 +17,34 @@ xportfolio.controller("projectsController", function($scope, portfolioProjectsSe
                 if ($scope.projectCategories.indexOf(key) == -1){
                     $scope.projectCategories.push(key);
                 }
-
             });
         })
+        console.log($scope.projects);
     });
 
     $timeout(function(){
         $scope.$emit('iso-option', {filter: '.all'});
         $scope.$emit('iso-option', {layoutMode: 'packery'});
         $scope.$emit('iso-method', {name:'layout', params:null});
+        //$scope.$emit('iso-option', {sortBy : 'random' });
     },500);
 
-    jQuery('body').on('DOMNodeInserted', '.project-box', function () {
-        $scope.rollOut(jQuery(this)[0].id);
-        console.log(jQuery(this)[0].id);
+    angular.element('body').on('DOMNodeInserted', '.project-box', function () {
+        if (angular.element(this)[0].id != ""){
+            $scope.rollOut(angular.element(this)[0].id);
+            //console.log("DOMNodeInserted: id:", angular.element(this)[0].id);
+        }
     });
 
     $scope.rollOut = function(id){
         $timeout(function(){
-            jQuery("#"+id).addClass("loaded");
+            angular.element("#"+id).addClass("loaded");
         },700);
         $timeout(function(){
-            jQuery("#"+id).stop().animate({
+            angular.element("#"+id).stop().animate({
                 'opacity' : 1
             },500);
-            jQuery("#"+id).find('.loader').animate({
+            angular.element("#"+id).find('.loader').animate({
                 'width' : 100,
                 'opacity' : 1
             },Math.floor((Math.random()*2000)+50));

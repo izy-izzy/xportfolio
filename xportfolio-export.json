@@ -1,0 +1,40 @@
+{
+  "projects" : {
+    "gumballmachine" : {
+      "categories" : {
+        "3d" : 1,
+        "design" : 1
+      },
+      "contribution" : "Design, Render, Modeling",
+      "description" : "Lorem ipsum dolor ",
+      "height" : 5,
+      "hreflink" : "http://www.designcriminal.com",
+      "id" : 0,
+      "image_prefix" : "gumballmachine",
+      "images" : 1,
+      "name" : "Vintage gumball machine",
+      "perex" : "Soo sexy.",
+      "pictures_width" : [ 5 ],
+      "technology" : "Adobe Photoshop, Maxon Cinema4D, Vray",
+      "thumbs" : 1,
+      "width" : 1
+    },
+    "algorithmvase" : {
+      "categories" : {
+        "3d" : 1,
+        "design" : 1
+      },
+      "contribution" : "Modeling, Rendering, Algorithm design",
+      "description" : "Algorithmically created vase",
+      "height" : 3,
+      "id" : 87,
+      "image_prefix" : "vase",
+      "images" : 4,
+      "name" : "Vase based on algorithm",
+      "pictures_width" : [ 3, 2, 2, 2 ],
+      "technology" : "Cinema4D, VRay",
+      "thumbs" : 1,
+      "width" : 3
+    }
+  }
+}

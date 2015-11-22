@@ -33,15 +33,18 @@ http.createServer(function (request, response) {
 	console.log('path',path);
 
   
-	var regProjects = /project\/[0-9]/;
-	var regProjectsPicture = /project\/[0-9]\/image\/[0-9]/;
+	var regProjects = /project\/[a-z|A-Z|0-9]/;
+	var regProjectsPicture = /project\/[a-z|A-Z|0-9]\/image\/[0-9]/;
+
+	var kokot = regProjects.test("/project/lol");
+	console.log(kokot);
+
 	var found = regProjects.test(path) 
 				|| regProjectsPicture.test(path) 
 				|| path == '/' 
 				|| path == '/projects' 
 				|| path == '/bio' 
 				|| path == '/intro' 
-				|| path == '/project' 
 				|| path =='/error404';
 
      	switch(found){

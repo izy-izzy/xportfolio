@@ -3,7 +3,7 @@ xportfolio.service('portfolioProjectsService', function($firebaseArray, $firebas
             return $firebaseObject(new Firebase("https://xportfolio.firebaseio.com/projects/"+index));
         }
     this.getAllProjects = function() {
-            return $firebaseArray(new Firebase("https://xportfolio.firebaseio.com/projects/"));
+            return $firebaseArray(new Firebase("https://xportfolio.firebaseio.com/projects/").orderByChild("priority"));
         }
 
 });

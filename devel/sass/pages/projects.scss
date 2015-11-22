@@ -45,8 +45,8 @@
 	}
 	.project{
 		&-box{
-			@include transition(all 0.5s ease);
-			opacity: 0.01;
+			//@include transition(all 0.5s ease);
+			//opacity: 0.01;
 			cursor: pointer;
 			@extend .imageLoading;
 				
@@ -63,28 +63,46 @@
 				margin-bottom: 10px;
 				opacity : 0.25;
 			}
-			&.x-1{
+			&.x-0{
 				width: 200px;
 			}
-			&.x-2{
+			&.x-1{
 				width: 300px;
 			}
-			&.x-3{
+			&.x-2{
 				width: 400px;
+			}
+			&.x-3{
+				width: 500px;
+			}
+			&.x-4{
+				width: 600px;
+			}
+			&.x-5{
+				width: 700px;
 			}
 			padding:15px;
 			.image_thumb{
 				background-position: center;
 				background-size: cover;
 				width:100%;
-				&.y-1{
+				&.y-0{
 					height: 150px;
 				}
-				&.y-2{
+				&.y-1{
 					height: 200px;
 				}
-				&.y-3{
+				&.y-2{
 					height: 250px;
+				}
+				&.y-3{
+					height: 300px;
+				}
+				&.y-4{
+					height: 350px;
+				}
+				&.y-5{
+					height: 400px;
 				}
 			}
 		}

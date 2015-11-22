@@ -11,8 +11,8 @@
 				<div ng-if="project.perex">
 					<h2 ng-bind="project.perex" class="perex"></h2>
 				</div>
-				<div ng-if="project.desc">
-					<h3 ng-bind="project.perex" class="desc"></h2>
+				<div ng-if="project.description">
+					<h3 ng-bind="project.description" class="desc"></h2>
 				</div>
 
 				<div ng-if="project.contribution" class="info-block">
@@ -37,7 +37,7 @@
 				</div>
 			</div>
 			<div class="col-md-9 clearfix col-sm-12" >
-				<div isotope-container>
+				<div isotope-container class="isotope-container">
 					<div ng-repeat="i in projectImagesCount()" isotope-item class="image_thumb" ng-class="getPictureClass($index)" >
 						<img  
 						 ng-src="{{projectImage($index)}}"

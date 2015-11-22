@@ -5922,7 +5922,7 @@ nav {
   border-top: 0px solid white; }
 
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-  background-color: white !important; }
+  background-color: transparent !important; }
 
 .navbar-default .navbar-toggle {
   border: 0px solid white; }
@@ -6036,10 +6036,6 @@ nav {
         text-decoration: none;
         border-bottom: 3px solid #b70101; }
   #page-projects .project-box {
-    -webkit-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-    opacity: 0.01;
     cursor: pointer;
     padding: 15px; }
     #page-projects .project-box:hover {
@@ -6052,22 +6048,34 @@ nav {
       background-color: #b70101;
       margin-bottom: 10px;
       opacity: 0.25; }
-    #page-projects .project-box.x-1 {
+    #page-projects .project-box.x-0 {
       width: 200px; }
-    #page-projects .project-box.x-2 {
+    #page-projects .project-box.x-1 {
       width: 300px; }
-    #page-projects .project-box.x-3 {
+    #page-projects .project-box.x-2 {
       width: 400px; }
+    #page-projects .project-box.x-3 {
+      width: 500px; }
+    #page-projects .project-box.x-4 {
+      width: 600px; }
+    #page-projects .project-box.x-5 {
+      width: 700px; }
     #page-projects .project-box .image_thumb {
       background-position: center;
       background-size: cover;
       width: 100%; }
-      #page-projects .project-box .image_thumb.y-1 {
+      #page-projects .project-box .image_thumb.y-0 {
         height: 150px; }
-      #page-projects .project-box .image_thumb.y-2 {
+      #page-projects .project-box .image_thumb.y-1 {
         height: 200px; }
-      #page-projects .project-box .image_thumb.y-3 {
+      #page-projects .project-box .image_thumb.y-2 {
         height: 250px; }
+      #page-projects .project-box .image_thumb.y-3 {
+        height: 300px; }
+      #page-projects .project-box .image_thumb.y-4 {
+        height: 350px; }
+      #page-projects .project-box .image_thumb.y-5 {
+        height: 400px; }
 
 @media screen and (max-width: 768px) {
   #page-projects .project-box.x-1 {
@@ -6175,73 +6183,81 @@ nav {
     #page-error404 a.btn:hover {
       opacity: 0.75; }
 
-#page-project .project-info h2.perex {
-  font-size: 16px;
-  font-weight: 300;
-  font-style: italic; }
-
-#page-project .project-info h3.desc {
-  font-size: 14px;
-  font-weight: 500; }
-
-#page-project .project-info .info-block h2 {
-  margin-bottom: 0px;
-  font-size: 14px;
-  font-weight: 700; }
-
-#page-project .project-info .info-block .info-text {
-  font-size: 14px;
-  font-weight: 300; }
-
-#page-project .project-info .navigation-projects {
-  margin-top: 60px; }
-  #page-project .project-info .navigation-projects a {
-    width: auto;
-    cursor: pointer;
-    display: block;
-    padding: 10px 25px;
-    background-color: black;
-    color: white;
-    text-decoration: none;
-    text-transform: uppercase; }
-    #page-project .project-info .navigation-projects a:hover {
+#page-project {
+  /*.isotope-container{
+		opacity: 0.01;
+		@include transition(all 1s ease);
+		&.show{
+			opacity : 1;
+		}
+	}*/ }
+  #page-project .project-info h2.perex {
+    font-size: 16px;
+    font-weight: 300;
+    font-style: italic; }
+  #page-project .project-info h3.desc {
+    font-size: 14px;
+    font-weight: 500; }
+  #page-project .project-info .info-block h2 {
+    margin-bottom: 0px;
+    font-size: 14px;
+    font-weight: 700; }
+  #page-project .project-info .info-block .info-text {
+    font-size: 14px;
+    font-weight: 300; }
+  #page-project .project-info .navigation-projects {
+    margin-top: 60px; }
+    #page-project .project-info .navigation-projects a {
+      width: auto;
+      cursor: pointer;
+      display: block;
+      padding: 10px 25px;
+      background-color: black;
       color: white;
-      background-color: gray; }
-
-#page-project .image_thumb {
-  min-height: 80px;
-  min-width: 80px;
-  max-width: 100%;
-  padding: 20px;
-  height: auto;
-  display: block;
-  float: left;
-  cursor: pointer;
-  -webkit-transition: all 0.25s ease;
-  -o-transition: all 0.25s ease;
-  transition: all 0.25s ease; }
-  #page-project .image_thumb.x-0 {
-    width: 100px; }
-  #page-project .image_thumb.x-1 {
-    width: 200px; }
-  #page-project .image_thumb.x-2 {
-    width: 300px; }
-  #page-project .image_thumb.x-3 {
-    width: 400px; }
-  #page-project .image_thumb.x-4 {
-    width: 500px; }
-  #page-project .image_thumb img {
-    opacity: 0;
-    width: 100%;
-    -webkit-transition: all 0.5s ease-in-out;
-    -moz-transition: all 0.5s ease-in-out;
-    -ms-transition: all 0.5s ease-in-out;
-    -o-transition: all 0.5s ease-in-out;
-    transition: all 0.5s ease-in-out; }
-    #page-project .image_thumb img.loaded {
-      opacity: 1; }
-  #page-project .image_thumb:hover {
-    background-color: rgba(0, 0, 0, 0.05); }
+      text-decoration: none;
+      text-transform: uppercase; }
+      #page-project .project-info .navigation-projects a:hover {
+        color: white;
+        background-color: gray; }
+  #page-project .image_thumb {
+    min-height: 80px;
+    min-width: 80px;
+    max-width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 20px;
+    height: auto;
+    display: block;
+    float: left;
+    cursor: pointer;
+    -webkit-transition: all 0.25s ease;
+    -o-transition: all 0.25s ease;
+    transition: all 0.25s ease; }
+    #page-project .image_thumb.x-0 {
+      width: 100px; }
+    #page-project .image_thumb.x-1 {
+      width: 200px; }
+    #page-project .image_thumb.x-2 {
+      width: 300px; }
+    #page-project .image_thumb.x-3 {
+      width: 400px; }
+    #page-project .image_thumb.x-4 {
+      width: 500px; }
+    #page-project .image_thumb.x-5 {
+      width: 600px; }
+    #page-project .image_thumb img {
+      opacity: 0;
+      width: 100%;
+      -webkit-transition: all 0.5s ease-in-out;
+      -moz-transition: all 0.5s ease-in-out;
+      -ms-transition: all 0.5s ease-in-out;
+      -o-transition: all 0.5s ease-in-out;
+      transition: all 0.5s ease-in-out; }
+      #page-project .image_thumb img.loaded {
+        opacity: 1; }
+    #page-project .image_thumb:hover {
+      background-color: rgba(0, 0, 0, 0.05); }
 
 @media screen and (max-width: 992px) {
   #page-project .image_thumb {

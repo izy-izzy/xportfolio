@@ -1,4 +1,11 @@
 #page-project{
+	/*.isotope-container{
+		opacity: 0.01;
+		@include transition(all 1s ease);
+		&.show{
+			opacity : 1;
+		}
+	}*/
 	.project-info{
 		h2.perex{
 			font-size: 16px;
@@ -42,6 +49,9 @@
 		min-height: 80px;
 		min-width: 80px;
 		max-width: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
 		&.x-0{
 			width: 100px;
 		}
@@ -56,6 +66,9 @@
 		}
 		&.x-4{
 			width: 500px;
+		}
+		&.x-5{
+			width: 600px;
 		}
 		padding: 20px;
 		height: auto;
