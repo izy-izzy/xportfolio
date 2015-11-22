@@ -6,6 +6,12 @@ xportfolio.controller("projectImageController", function($state, $scope, $stateP
 
     $scope.mobileDevice = mobileDetectionFactory.isMobile();
 
+    $scope.project.$loaded(function(){
+        if ($scope.project.name == undefined){
+            $state.go('error404');
+        } 
+    });
+
     $scope.getImage = function(index){
     	return "./images/projects/"+$scope.project.image_prefix+"_"+$scope.imageId+".jpg";
     }

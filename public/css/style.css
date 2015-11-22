@@ -6038,6 +6038,11 @@ nav {
   #page-projects .project-box {
     cursor: pointer;
     padding: 15px; }
+    #page-projects .project-box a {
+      color: black; }
+      #page-projects .project-box a:hover {
+        color: black;
+        text-decoration: none; }
     #page-projects .project-box:hover {
       background-color: rgba(0, 0, 0, 0.05); }
     #page-projects .project-box.loaded {

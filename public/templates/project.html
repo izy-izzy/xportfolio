@@ -2,7 +2,10 @@
 	<div class="container-fluid" ng-swipe-left="goToProject('next')" ng-swipe-right="goToProject('next')">
 		<div class="row navigation">
 			<div class="col-md-12">
-				<a ui-sref="projects" class="back"><span class="glyphicon glyphicon-chevron-left"></span> back to projects</a>
+				<a ui-sref="projects" class="back">
+					<span class="glyphicon glyphicon-chevron-left"></span>
+					back to projects
+				</a>
 			</div>
 		</div>
 		<div class="row project-info">
@@ -32,14 +35,21 @@
 					<span ng-bind="project.technology" class="info-text"></span>
 				</div>
 				<div class="navigation-projects">
-					<a ng-click="goToProject('prev')" class="pull-left prev"><span class="glyphicon glyphicon-chevron-left"></span> prev </a>
-					<a ng-click="goToProject('next')" class="pull-right next"> next <span class="glyphicon glyphicon-chevron-right"></span> </a>
+					<a ui-sref="project({projectID:prevProjectID})" class="pull-left prev">
+						<span class="glyphicon glyphicon-chevron-left"></span> 
+						prev
+					</a>
+					<a ui-sref="project({projectID:nextProjectID})" class="pull-right next">
+						next 
+						<span class="glyphicon glyphicon-chevron-right"></span>
+					</a>
 				</div>
 			</div>
 			<div class="col-md-9 clearfix col-sm-12" >
 				<div isotope-container class="isotope-container">
 					<div ng-repeat="i in projectImagesCount()" isotope-item class="image_thumb" ng-class="getPictureClass($index)" >
 						<img  
+						 alt="{{project.name}} | {{$index}}"
 						 ng-src="{{projectImage($index)}}"
 						 ng-attr-id="{{ 'image-' + $index }}"
 						 ng-click="showPictureDetail($index)" 

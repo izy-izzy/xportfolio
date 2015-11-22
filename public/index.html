@@ -2,22 +2,39 @@
 <html ng-app="xportfolio">
 
 <head>
-    <title>Lukas Kalcok - ???</title>
+    <title>Lukas Kalcok | Portfolio</title>
     <meta name="description" content="front-end developer and graphic designer">
     <meta name="keywords" content="front-end, developer, graphic designer, 3D artist, visualization, portfolio, personal profile">
     <meta name="language" content="English"> 
     <meta name="robots" content="index, follow">
 
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="The Name or Title Here">
+    <meta itemprop="description" content="front-end developer and graphic designer">
+    <meta itemprop="image" content="http://www.example.com/image.jpg">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="http://lukaskalcok.com/images/ogimage.jpg">
+    <meta name="twitter:site" content="LukasKalcok.com">
+    <meta name="twitter:title" content="Lukas Kalcok | Portfolio">
+    <meta name="twitter:description" content="front-end developer and graphic designer">
+    <meta name="twitter:creator" content="Lukas Kalcok">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="Lukas Kalcok | Portfolio" />
+    <meta property="og:url" content="http://lukaskalcok.com/" />
     <meta property="og:image" content="http://lukaskalcok.com/images/ogimage.jpg"/>
-    <meta property="og:description" content="front-end developer and graphic designer">
+    <meta property="og:description" content="front-end developer and graphic designer"/>
     <meta property="og:site_name" content="LukasKalcok.com">
 
+    <!-- application requirement --> 
     <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,700,300italic,400italic,600italic' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="/js/app.min.js"></script>
 
+    <!-- view port definition -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
+    <!-- favicon -->
     <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
@@ -36,24 +53,30 @@
     <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
+    <!-- fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,700,300italic,400italic,600italic' rel='stylesheet' type='text/css'>
     <script src="https://use.typekit.net/nlb7tku.js"></script>
     <script>try{Typekit.load({ async: true });}catch(e){}</script>
-    <script>
-    (function(i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function() {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-    ga('create', 'UA-69839323-1', 'auto');
-    //ga('send', 'pageview');
+    <!-- google analytics -->
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-69839323-1', 'auto');
+        //ga('send', 'pageview');
     </script>
+
+    <!-- angular routing base href -->
     <base href="/">
 </head>
 

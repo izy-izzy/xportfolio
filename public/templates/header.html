@@ -6,7 +6,7 @@
                 <span class="si-icon si-icon-hamburger-cross" data-icon-name="hamburgerCross"></span>
             </button>
             <a class="navbar-brand" ui-sref="intro">
-                <img class="logo" src="./images/logo.png" />
+                <img class="logo" src="./images/logo.png" alt="lukas kalcok's personal monogram"/>
             </a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -24,10 +24,12 @@
         </div>
     </div>
 </nav>
+
+<!-- required for animated svg mobile menu button -->
 <script>
-jQuery(document).ready(function() {
-    [].slice.call(document.querySelectorAll('.si-icon')).forEach(function(el) {
-        var svgicon = new svgIcon(el, svgIconConfig);
+    jQuery(document).ready(function() {
+        [].slice.call(document.querySelectorAll('.si-icon')).forEach(function(el) {
+            var svgicon = new svgIcon(el, svgIconConfig);
+        });
     });
-});
 </script>
