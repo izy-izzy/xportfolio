@@ -11,3 +11,15 @@ xportfolio.directive('imageonload', function($animate) {
         }
     };
 });
+
+xportfolio.directive('myProjectloader', function() {
+    return {
+        template: '<div class="loader" id="loader-{{project.$id}}"></div>',
+        link: function (scope, elm) {
+            angular.element(angular.element(elm).find(".loader")).animate({
+                'width' : 100,
+                'opacity' : 1
+            },Math.floor((Math.random()*2000)+50));
+        }
+    };
+});

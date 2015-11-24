@@ -5,5 +5,4 @@ xportfolio.controller("introController", function($scope, apiaryConnectionServic
 	}, function (response) {
 		console.log("Unable to load test data.");
 	});
-    console.log("intro");
 });
