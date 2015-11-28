@@ -9,10 +9,12 @@ xportfolio.controller("projectController", function($state, $scope, $stateParams
     $scope.project.$loaded(function(){
   	    if ($scope.project.name == undefined){
 	    	$state.go('error404');
-	    } else {
-            $scope.getNextPrevProjects();
-        }
+	    } 
 	});
+
+    $scope.allProjects.$loaded(function(){
+        $scope.getNextPrevProjects();
+    });
 
     $timeout(function(){
         $scope.$emit('iso-option', {layoutMode: 'packery'});
@@ -46,6 +48,14 @@ xportfolio.controller("projectController", function($state, $scope, $stateParams
         $scope.nextProjectID = $scope.allProjects[nextProjectIndex].$id;
         $scope.prevProjectID = $scope.allProjects[prevProjectIndex].$id;
     }
+
+    $scope.goToProject = function(way){
+        if (way == 'next'){
+            $state.go("project", {'projectID':$scope.nextProjectID});
+        } else {
+            $state.go("project", {'projectID':$scope.prevProjectID});
+        }
+    };
 
     $scope.projectImage = function(index){
     	return "./images/projects/"+$scope.project.image_prefix+"_"+index+".jpg";

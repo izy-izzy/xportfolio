@@ -10,12 +10,18 @@
 		min-width: 100px;
 		@extend .imageLoading;
 		max-width: 100%;
+		width: 100%;
 		display: block;
 		margin:0 auto;
 		text-align: center;
-		position: relative;
+		position : relative;
+		img{
+			display: block;
+			margin: 0 auto;
+		}
 	}
 	.main_image{
+		z-index: 100;
 		display: inline-block;
 		opacity: 0;
 		max-width: 100%;
@@ -28,25 +34,9 @@
 			opacity: 1;
 		}
 	}
-	a{
-		&.stateChange{
-			position: absolute;
-			top: 50px;
-			padding: 10px 20px;
-			cursor: pointer;
-			background-color: black;
-			color: white;
-			text-decoration: none;
-			text-transform: uppercase;
-			&.prev{
-				left: 0;
-			}
-			&.next{
-				right: 0;
-			}
-			&:hover{
-				background-color: gray;
-			}
-		}
+	.navigation{
+		width: 100%;
+		position: relative;
+		z-index: 1000;	
 	}
 }

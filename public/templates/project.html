@@ -35,12 +35,12 @@
 					<span ng-bind="project.technology" class="info-text"></span>
 				</div>
 				<div class="navigation-projects">
-					<a ui-sref="project({projectID:prevProjectID})" class="pull-left prev">
+					<a ui-sref="project({projectID:prevProjectID})" class="pull-left prev btn-animated" ng-click="goToProject('prev')">
 						<span class="glyphicon glyphicon-chevron-left"></span> 
 						prev
 					</a>
-					<a ui-sref="project({projectID:nextProjectID})" class="pull-right next">
-						next 
+					<a ui-sref="project({projectID:nextProjectID})" class="pull-right next btn-animated" ng-click="goToProject('next')">
+						next
 						<span class="glyphicon glyphicon-chevron-right"></span>
 					</a>
 				</div>

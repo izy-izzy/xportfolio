@@ -5874,6 +5874,29 @@ a {
   a:hover {
     color: #ea0101; }
 
+.btn-animated {
+  width: auto;
+  cursor: pointer;
+  display: block;
+  padding: 10px 25px;
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase; }
+  .btn-animated:hover {
+    text-decoration: none;
+    color: white;
+    background-color: gray; }
+    .btn-animated:hover span {
+      width: 15px;
+      overflow: hidden; }
+  .btn-animated span {
+    -webkit-transition: all 0.25s ease;
+    -o-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+    width: 0px;
+    overflow: hidden; }
+
 @media screen and (max-width: 768px) {
   .page {
     padding-top: 40px; }
@@ -6188,81 +6211,66 @@ nav {
     #page-error404 a.btn:hover {
       opacity: 0.75; }
 
-#page-project {
-  /*.isotope-container{
-		opacity: 0.01;
-		@include transition(all 1s ease);
-		&.show{
-			opacity : 1;
-		}
-	}*/ }
-  #page-project .project-info h2.perex {
-    font-size: 16px;
-    font-weight: 300;
-    font-style: italic; }
-  #page-project .project-info h3.desc {
-    font-size: 14px;
-    font-weight: 500; }
-  #page-project .project-info .info-block h2 {
-    margin-bottom: 0px;
-    font-size: 14px;
-    font-weight: 700; }
-  #page-project .project-info .info-block .info-text {
-    font-size: 14px;
-    font-weight: 300; }
-  #page-project .project-info .navigation-projects {
-    margin-top: 60px; }
-    #page-project .project-info .navigation-projects a {
-      width: auto;
-      cursor: pointer;
-      display: block;
-      padding: 10px 25px;
-      background-color: black;
-      color: white;
-      text-decoration: none;
-      text-transform: uppercase; }
-      #page-project .project-info .navigation-projects a:hover {
-        color: white;
-        background-color: gray; }
-  #page-project .image_thumb {
-    min-height: 80px;
-    min-width: 80px;
-    max-width: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    padding: 20px;
-    height: auto;
-    display: block;
-    float: left;
-    cursor: pointer;
-    -webkit-transition: all 0.25s ease;
-    -o-transition: all 0.25s ease;
-    transition: all 0.25s ease; }
-    #page-project .image_thumb.x-0 {
-      width: 100px; }
-    #page-project .image_thumb.x-1 {
-      width: 200px; }
-    #page-project .image_thumb.x-2 {
-      width: 300px; }
-    #page-project .image_thumb.x-3 {
-      width: 400px; }
-    #page-project .image_thumb.x-4 {
-      width: 500px; }
-    #page-project .image_thumb.x-5 {
-      width: 600px; }
-    #page-project .image_thumb img {
-      opacity: 0;
-      width: 100%;
-      -webkit-transition: all 0.5s ease-in-out;
-      -moz-transition: all 0.5s ease-in-out;
-      -ms-transition: all 0.5s ease-in-out;
-      -o-transition: all 0.5s ease-in-out;
-      transition: all 0.5s ease-in-out; }
-      #page-project .image_thumb img.loaded {
-        opacity: 1; }
-    #page-project .image_thumb:hover {
-      background-color: rgba(0, 0, 0, 0.05); }
+#page-project .project-info h2.perex {
+  font-size: 16px;
+  font-weight: 300;
+  font-style: italic; }
+
+#page-project .project-info h3.desc {
+  font-size: 14px;
+  font-weight: 500; }
+
+#page-project .project-info .info-block h2 {
+  margin-bottom: 0px;
+  font-size: 14px;
+  font-weight: 700; }
+
+#page-project .project-info .info-block .info-text {
+  font-size: 14px;
+  font-weight: 300; }
+
+#page-project .project-info .navigation-projects {
+  margin-top: 60px; }
+
+#page-project .image_thumb {
+  min-height: 80px;
+  min-width: 80px;
+  max-width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 20px;
+  height: auto;
+  display: block;
+  float: left;
+  cursor: pointer;
+  -webkit-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease; }
+  #page-project .image_thumb.x-0 {
+    width: 100px; }
+  #page-project .image_thumb.x-1 {
+    width: 200px; }
+  #page-project .image_thumb.x-2 {
+    width: 300px; }
+  #page-project .image_thumb.x-3 {
+    width: 400px; }
+  #page-project .image_thumb.x-4 {
+    width: 500px; }
+  #page-project .image_thumb.x-5 {
+    width: 600px; }
+  #page-project .image_thumb img {
+    opacity: 0;
+    width: 100%;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out; }
+    #page-project .image_thumb img.loaded {
+      opacity: 1; }
+  #page-project .image_thumb:hover {
+    background-color: rgba(0, 0, 0, 0.05); }
 
 @media screen and (max-width: 992px) {
   #page-project .image_thumb {
@@ -6283,12 +6291,17 @@ nav {
   min-height: 100px;
   min-width: 100px;
   max-width: 100%;
+  width: 100%;
   display: block;
   margin: 0 auto;
   text-align: center;
   position: relative; }
+  #page-image .image_loader img {
+    display: block;
+    margin: 0 auto; }
 
 #page-image .main_image {
+  z-index: 100;
   display: inline-block;
   opacity: 0;
   max-width: 100%;
@@ -6300,21 +6313,10 @@ nav {
   #page-image .main_image.loaded {
     opacity: 1; }
 
-#page-image a.stateChange {
-  position: absolute;
-  top: 50px;
-  padding: 10px 20px;
-  cursor: pointer;
-  background-color: black;
-  color: white;
-  text-decoration: none;
-  text-transform: uppercase; }
-  #page-image a.stateChange.prev {
-    left: 0; }
-  #page-image a.stateChange.next {
-    right: 0; }
-  #page-image a.stateChange:hover {
-    background-color: gray; }
+#page-image .navigation {
+  width: 100%;
+  position: relative;
+  z-index: 1000; }
 
 .si-icons span {
   display: inline-block;

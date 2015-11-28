@@ -1,11 +1,4 @@
 #page-project{
-	/*.isotope-container{
-		opacity: 0.01;
-		@include transition(all 1s ease);
-		&.show{
-			opacity : 1;
-		}
-	}*/
 	.project-info{
 		h2.perex{
 			font-size: 16px;
@@ -29,20 +22,6 @@
 		}
 		.navigation-projects{
 			margin-top: 60px;
-			a{
-				width: auto;
-				cursor: pointer;
-				display: block;
-				padding: 10px 25px;
-				background-color: black;
-				color: white;
-				text-decoration: none;
-				text-transform: uppercase;
-				&:hover{
-					color: white;
-					background-color: gray;
-				}
-			}
 		}
 	}
 	.image_thumb{

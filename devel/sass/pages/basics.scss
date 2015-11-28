@@ -67,6 +67,31 @@ a{
 	}
 }
 
+.btn-animated{
+	width: auto;
+	cursor: pointer;
+	display: block;
+	padding: 10px 25px;
+	background-color: black;
+	color: white;
+	text-decoration: none;
+	text-transform: uppercase;
+	&:hover{
+		text-decoration: none;
+		color: white;
+		background-color: gray;
+		span{
+			width: 15px;
+			overflow: hidden;
+		}
+	}
+	span{
+		@include transition(all 0.25s ease);
+		width: 0px;
+		overflow: hidden;
+	}
+}
+
 
 
 @media screen and (max-width: $screen-tablet){
