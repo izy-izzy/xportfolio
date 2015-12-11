@@ -45,7 +45,8 @@ http.createServer(function (request, response) {
 				|| path == '/projects' 
 				|| path == '/bio' 
 				|| path == '/intro' 
-				|| path =='/error404';
+				|| path == '/error404'
+				|| path == '/admin';
 
      	switch(found){
 	        case true:

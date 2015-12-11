@@ -36,6 +36,10 @@ xportfolio.config(function($stateProvider, $urlRouterProvider,$locationProvider)
       url: "/project/:projectID/image/:imageID",
       templateUrl: "templates/projectimage.html",
     })
+    .state('admin', {
+      url: "/admin",
+      templateUrl: "templates/admin.html",
+    })
     .state('error404',{
       url: "/error404",
       templateUrl: "templates/error404.html",

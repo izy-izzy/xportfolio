@@ -1,0 +1,92 @@
+<div id="page-admin" class="page" ng-controller="adminController">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="row filters">
+					Filter categories:
+					<div class="btn-group">
+						<a ng-repeat="(category, value) in projectCategories" class='filter btn btn-default' ng-class="{'active': value}" ng-click="toggleCategory(category)" ng-animate>{{category}}</a>
+					</div>
+				</div>
+				<div class="row filters">
+					Order by:
+					<div class="btn-group">
+						<a ng-repeat="filter in filterTypes" class='filter btn btn-default' ng-animate>{{filter}}</a>
+					</div>
+				</div>
+				<ul>
+					<li
+						ng-repeat="project in allProjects | customFilter:projectCategories | orderBy:orderfilter" 
+			            ng-class="" 
+						ng-attr-id="{{ 'project-' + project.$id }}"
+						alt="{{project.name}}">
+						<a href="javascript:void(0)" ng-bind="project.name" ng-click="setActiveProject(project)"></a>
+					</li>
+				</ul>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group"><label>name</label><input type="text" class="form-control" placeholder="name" ng-model="activeproject.name"/></div>
+				<div class="form-group"><label>perex</label><textarea class="form-control" placeholder="perex" ng-model="activeproject.perex"/></div>
+				<div class="form-group">
+					<label>images</label>
+					<input type="text" class="form-control" placeholder="images" ng-model="activeproject.images"/>
+				</div>
+				<div class="form-group">
+						<span ng-repeat="image in activeproject.pictures_width track by $index">
+						id: <input type="text" class="form-control" placeholder="image.key" ng-model="image.key"/>
+						<div class="form-group">
+							Width:
+							<label><input type="radio" ng-model="image.value" name="image.value" value="0">0</label>
+							<label><input type="radio" ng-model="image.value" name="image.value" value="1">1</label>
+							<label><input type="radio" ng-model="image.value" name="image.value" value="2">2</label>
+							<label><input type="radio" ng-model="image.value" name="image.value" value="3">3</label>
+							<label><input type="radio" ng-model="image.value" name="image.value" value="4">4</label>
+							<label><input type="radio" ng-model="image.value" name="image.value" value="5">5</label>
+						</div>
+					</span>
+					<a href="javascript:void(0);" class="btn btn-default">add Widths</a>
+				</div>
+				<div class="form-group"><label>name</label><input type="text" class="form-control" placeholder="name" ng-model="activeproject.name"/></div>
+				<div class="form-group"><label>priority</label><input type="text" class="form-control" placeholder="priority" ng-model="activeproject.priority"/></div>
+				<div class="form-group"><label>technology</label><input type="text" class="form-control" placeholder="technology" ng-model="activeproject.technology"/></div>
+				<div class="form-group"><label>thumbs</label><input type="text" class="form-control" placeholder="thumbs" ng-model="activeproject.thumbs"/></div>
+				<div class="form-group"><label>image_prefix</label><input type="text" class="form-control" placeholder="image_prefix" ng-model="activeproject.image_prefix"/></div>
+				<div class="form-group"><label>description</label><textarea class="form-control" placeholder="description" ng-model="activeproject.description"/></div>
+				<div class="form-group"><label>contribution</label><textarea class="form-control" placeholder="contribution" ng-model="activeproject.contribution"/></div>
+				<div class="form-group">
+					Width:
+					<label><input type="radio" ng-model="activeproject.width" name="activeproject.width" value="0">0</label>
+					<label><input type="radio" ng-model="activeproject.width" name="activeproject.width" value="1">1</label>
+					<label><input type="radio" ng-model="activeproject.width" name="activeproject.width" value="2">2</label>
+					<label><input type="radio" ng-model="activeproject.width" name="activeproject.width" value="3">3</label>
+					<label><input type="radio" ng-model="activeproject.width" name="activeproject.width" value="4">4</label>
+					<label><input type="radio" ng-model="activeproject.width" name="activeproject.width" value="5">5</label>
+				</div>
+				<div class="form-group">
+					Height:
+					<label><input type="radio" ng-model="activeproject.height" name="activeproject.height" value="0">0</label>
+					<label><input type="radio" ng-model="activeproject.height" name="activeproject.height" value="1">1</label>
+					<label><input type="radio" ng-model="activeproject.height" name="activeproject.height" value="2">2</label>
+					<label><input type="radio" ng-model="activeproject.height" name="activeproject.height" value="3">3</label>
+					<label><input type="radio" ng-model="activeproject.height" name="activeproject.height" value="4">4</label>
+					<label><input type="radio" ng-model="activeproject.height" name="activeproject.height" value="5">5</label>
+				</div>
+				<div class="form-group">
+					Categories:
+					<label class="checkbox-inline">
+						<input type="checkbox" ng-model="activeproject.categories['design']" ng-true-value="1" ng-false-value="0">design
+					</label>
+					<label class="checkbox-inline">
+						<input type="checkbox" ng-model="activeproject.categories['front-end']" ng-true-value="1" ng-false-value="0">front-end
+					</label>
+					<label class="checkbox-inline">
+						<input type="checkbox" ng-model="activeproject.categories['back-end']" ng-true-value="1" ng-false-value="0">back-end
+					</label>
+					<label class="checkbox-inline">
+						<input type="checkbox" ng-model="activeproject.categories['3d']" ng-true-value="1" ng-false-value="0">3d
+					</label>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> 
