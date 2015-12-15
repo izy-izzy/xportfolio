@@ -1,6 +1,32 @@
 <div id="page-admin" class="page" ng-controller="adminController">
 	<div class="container">
 		<div class="row">
+			<div class="form-group">
+				<div class="col-xs-12" ng-show="user.authenticated">
+					Logged in as:
+					<span class="label label-success" ng-bind="user.loginData.email"></span>
+					<span class="label label-default" ng-bind="user.uid"></span>
+				</div>
+				<div class="col-xs-4" ng-show="!user.authenticated">
+					<input type="text" class="form-control" placeholder="e-mail" ng-model="user.loginData.email"/>
+				</div>
+				<div class="col-xs-4" ng-show="!user.authenticated">
+					<input type="password" class="form-control" placeholder="password" ng-model="user.loginData.password"/>
+				</div>
+				<div class="col-xs-4" ng-show="!user.authenticated">
+					<a href="javascript:void(0)" ng-click="logintoFireBase()" class="btn-default btn">login</a>
+				</div>
+				<div class="col-xs-4" ng-show="user.authenticated">
+					<a href="javascript:void(0)" ng-click="logoutofFireBase()" class="btn-default btn">logout</a>
+				</div>
+				<div class="col-xs-12">
+					<span class="label label-danger" ng-show="user.loginFailed">Login Failed</span>
+					<span class="label label-danger" ng-show="user.logoutFailed">Logout Failed</span>
+				</div>
+			</div>
+		</div>
+		<hr/>
+		<div class="row">
 			<div class="col-md-6">
 				<div class="row filters">
 					Filter categories:
@@ -11,80 +37,244 @@
 				<div class="row filters">
 					Order by:
 					<div class="btn-group">
-						<a ng-repeat="filter in filterTypes" class='filter btn btn-default' ng-animate>{{filter}}</a>
+						<a ng-repeat="filter in filterTypes" class='filter btn btn-default' ng-click="setFilter(filter)" ng-class="{'active': orderfilter == filter}" ng-animate>{{filter}}</a>
 					</div>
 				</div>
-				<ul>
+				<ul class="projects-list">
 					<li
-						ng-repeat="project in allProjects | customFilter:projectCategories | orderBy:orderfilter" 
+						ng-repeat="project in allProjects | customFilter:projectCategories | toArray | orderBy: orderfilter" 
 			            ng-class="" 
 						ng-attr-id="{{ 'project-' + project.$id }}"
 						alt="{{project.name}}">
-						<a href="javascript:void(0)" ng-bind="project.name" ng-click="setActiveProject(project)"></a>
+						<div class="btn-group">
+							<span ng-bind="project.priority" class="btn btn-default btn-priority"></span>
+							<a href="javascript:void(0)" class="btn btn-default" ng-class="{'active': project.admineditstart}" ng-click="toggleAdminEditStart(project)">
+								<i class="glyphicon glyphicon-chevron-down"></i>
+							</a>
+							<a href="javascript:void(0)" class="btn btn-default" ng-class="{'active': project.admineditend}" ng-click="toggleAdminEditEnd(project)">
+								<i class="glyphicon glyphicon-chevron-up"></i>
+							</a>
+							<a href="javascript:void(0)" class="btn btn-default btn-toggable" ng-class="{'active': project.active}" ng-click="toggleActiveProject(project)">
+								<i class="glyphicon glyphicon-ok"></i>
+							</a>
+							<a href="javascript:void(0)" class="btn btn-danger btn-default" ng-click="deactivateProject(project)">
+								<i class="glyphicon glyphicon-remove"></i>
+							</a>
+							<a href="javascript:void(0)" ng-bind="project.name" ng-click="setActiveProject(project)" class="btn-default btn"></a>
+						</div>
 					</li>
 				</ul>
+				<hr/>
+				<div class="row">
+					<div class="col-xs-12">
+					    <div class="input-group">
+					      	<div class="input-group-btn">
+					        	<button type="button" class="btn btn-default" ng-click="adminModeProjectChange(1)"><i class="glyphicon glyphicon-plus"></i> </button>
+					      	</div>
+					      	<input type="text" class="form-control" placeholder="{{adminModeProjectMove.value}}" ng-model="adminModeProjectMove.value"/>
+					      	<div class="input-group-btn">
+					        	<button type="button" class="btn btn-default" ng-click="adminModeProjectChange(-1)"><i class="glyphicon glyphicon-minus"></i> </button>
+					        	<button type="button" class="btn btn-default" ng-class="{'disabled': !anyProjectActive()}" ng-click="movePriority()">move priority</button>
+					        	<button type="button" class="btn btn-primary" ng-click="saveProjects()"><i class="glyphicon glyphicon-fire"></i> fire the DB!</button>
+					      	</div>
+					    </div>
+					</div>
+				</div>
 			</div>
-			<div class="col-md-6">
-				<div class="form-group"><label>name</label><input type="text" class="form-control" placeholder="name" ng-model="activeproject.name"/></div>
-				<div class="form-group"><label>perex</label><textarea class="form-control" placeholder="perex" ng-model="activeproject.perex"/></div>
-				<div class="form-group">
-					<label>images</label>
-					<input type="text" class="form-control" placeholder="images" ng-model="activeproject.images"/>
+			<hr/>
+			<div class="col-md-6" ng-if="activeproject != undefined">
+				<div class="row">
+					<div class="col-xs-12">
+					    <div class="input-group pull-right">
+					      	<div class="btn-group">
+					        	<button type="button" class="btn btn-default" ng-click="reloadProjects()"><i class="glyphicon glyphicon-refresh"></i> reload </button>
+					      		<button type="button" class="btn btn-primary" ng-click="saveProjects()"><i class="glyphicon glyphicon-fire"></i> fire the DB!</button>
+					      	</div>
+					    </div>
+					</div>
 				</div>
-				<div class="form-group">
-						<span ng-repeat="image in activeproject.pictures_width track by $index">
-						id: <input type="text" class="form-control" placeholder="image.key" ng-model="image.key"/>
+				<hr/>
+				<div class="panel panel-default">
+					<div class="panel-heading">Descriptions</div>
+					<div class="panel-body">
 						<div class="form-group">
-							Width:
-							<label><input type="radio" ng-model="image.value" name="image.value" value="0">0</label>
-							<label><input type="radio" ng-model="image.value" name="image.value" value="1">1</label>
-							<label><input type="radio" ng-model="image.value" name="image.value" value="2">2</label>
-							<label><input type="radio" ng-model="image.value" name="image.value" value="3">3</label>
-							<label><input type="radio" ng-model="image.value" name="image.value" value="4">4</label>
-							<label><input type="radio" ng-model="image.value" name="image.value" value="5">5</label>
+							<div class="row">
+								<div class="col-xs-3">
+									<label class="pull-right">name</label>
+								</div>
+								<div class="col-xs-9">
+									<input type="text" class="form-control" placeholder="name" ng-model="activeproject.name"/>
+								</div>
+							</div>
 						</div>
-					</span>
-					<a href="javascript:void(0);" class="btn btn-default">add Widths</a>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-xs-3">
+									<label class="pull-right">perex</label>
+								</div>
+								<div class="col-xs-9">
+									<textarea class="form-control" placeholder="perex" ng-model="activeproject.perex"/>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-xs-3">
+									<label class="pull-right">priority</label>
+								</div>
+								<div class="col-xs-3">
+									<input type="text" class="form-control" placeholder="priority" ng-model="activeproject.priority"/>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-xs-3">
+									<label class="pull-right">technology</label>
+								</div>
+								<div class="col-xs-9">
+									<textarea type="text" class="form-control" placeholder="technology" ng-model="activeproject.technology"/>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-xs-3">
+									<label class="pull-right">description</label>
+								</div>
+								<div class="col-xs-9">
+									<textarea class="form-control" placeholder="description" ng-model="activeproject.description"/>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-xs-3">
+									<label class="pull-right">contribution</label>
+								</div>
+								<div class="col-xs-9">
+									<textarea class="form-control" placeholder="contribution" ng-model="activeproject.contribution"/>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-xs-3">
+									<label class="pull-right">Categories:</label>
+								</div>
+								<div class="col-xs-9">
+									<label class="checkbox-inline">
+										<input type="checkbox" ng-model="activeproject.categories['design']" ng-true-value="1" ng-false-value="0">design
+									</label>
+									<label class="checkbox-inline">
+										<input type="checkbox" ng-model="activeproject.categories['front-end']" ng-true-value="1" ng-false-value="0">front-end
+									</label>
+									<label class="checkbox-inline">
+										<input type="checkbox" ng-model="activeproject.categories['back-end']" ng-true-value="1" ng-false-value="0">back-end
+									</label>
+									<label class="checkbox-inline">
+										<input type="checkbox" ng-model="activeproject.categories['3d']" ng-true-value="1" ng-false-value="0">3d
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div class="form-group"><label>name</label><input type="text" class="form-control" placeholder="name" ng-model="activeproject.name"/></div>
-				<div class="form-group"><label>priority</label><input type="text" class="form-control" placeholder="priority" ng-model="activeproject.priority"/></div>
-				<div class="form-group"><label>technology</label><input type="text" class="form-control" placeholder="technology" ng-model="activeproject.technology"/></div>
-				<div class="form-group"><label>thumbs</label><input type="text" class="form-control" placeholder="thumbs" ng-model="activeproject.thumbs"/></div>
-				<div class="form-group"><label>image_prefix</label><input type="text" class="form-control" placeholder="image_prefix" ng-model="activeproject.image_prefix"/></div>
-				<div class="form-group"><label>description</label><textarea class="form-control" placeholder="description" ng-model="activeproject.description"/></div>
-				<div class="form-group"><label>contribution</label><textarea class="form-control" placeholder="contribution" ng-model="activeproject.contribution"/></div>
-				<div class="form-group">
-					Width:
-					<label><input type="radio" ng-model="activeproject.width" name="activeproject.width" value="0">0</label>
-					<label><input type="radio" ng-model="activeproject.width" name="activeproject.width" value="1">1</label>
-					<label><input type="radio" ng-model="activeproject.width" name="activeproject.width" value="2">2</label>
-					<label><input type="radio" ng-model="activeproject.width" name="activeproject.width" value="3">3</label>
-					<label><input type="radio" ng-model="activeproject.width" name="activeproject.width" value="4">4</label>
-					<label><input type="radio" ng-model="activeproject.width" name="activeproject.width" value="5">5</label>
+				<div class="panel panel-default">
+					<div class="panel-heading">Images</div>	
+					<div class="panel-body">
+						<div class="form-group">
+							<div class="row">
+								<div class="col-xs-3">
+									<label class="pull-right">count</label>
+								</div>
+								<div class="col-xs-3">
+									<input type="text" class="form-control" placeholder="images" ng-model="activeproject.images"/>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-xs-3">
+									<label class="pull-right">image_prefix</label>
+								</div>
+								<div class="col-xs-9">
+									<input type="text" class="form-control" placeholder="image_prefix" ng-model="activeproject.image_prefix"/>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div ng-repeat="(key,value) in activeproject['pictures_width'] track by key">
+								<div class="row form-group">
+									<div class="col-xs-3">
+										<label class="pull-right"> id </label>
+									</div>
+									<div class="col-xs-2">
+										<input type="text" class="form-control" placeholder="{{key}}" ng-model="key"/>
+									</div>
+									<div class="col-xs-1">
+										<label class="pull-right"> width </label>
+									</div>
+									<div class="col-xs-5">
+										<label><input type="radio" ng-model="activeproject.pictures_width[$index]" name="{{key}}-{{value}}" value="0">0</label>
+										<label><input type="radio" ng-model="activeproject.pictures_width[$index]" name="{{key}}-{{value}}" value="1">1</label>
+										<label><input type="radio" ng-model="activeproject.pictures_width[$index]" name="{{key}}-{{value}}" value="2">2</label>
+										<label><input type="radio" ng-model="activeproject.pictures_width[$index]" name="{{key}}-{{value}}" value="3">3</label>
+										<label><input type="radio" ng-model="activeproject.pictures_width[$index]" name="{{key}}-{{value}}" value="4">4</label>
+										<label><input type="radio" ng-model="activeproject.pictures_width[$index]" name="{{key}}-{{value}}" value="5">5</label>
+									</div>
+									<div class="col-xs-1">
+										<a href="javascript:void(0);" class="pull-right btn btn-danger" ng-click="removePictureSettings(key)"> <i class="glyphicon glyphicon-remove"></i></a>
+									</div>
+								</div>
+							</div>
+							<a href="javascript:void(0);" class="btn btn-default" ng-click="addPictureSettings()">add Widths</a>
+						</div>
+					</div>
 				</div>
-				<div class="form-group">
-					Height:
-					<label><input type="radio" ng-model="activeproject.height" name="activeproject.height" value="0">0</label>
-					<label><input type="radio" ng-model="activeproject.height" name="activeproject.height" value="1">1</label>
-					<label><input type="radio" ng-model="activeproject.height" name="activeproject.height" value="2">2</label>
-					<label><input type="radio" ng-model="activeproject.height" name="activeproject.height" value="3">3</label>
-					<label><input type="radio" ng-model="activeproject.height" name="activeproject.height" value="4">4</label>
-					<label><input type="radio" ng-model="activeproject.height" name="activeproject.height" value="5">5</label>
-				</div>
-				<div class="form-group">
-					Categories:
-					<label class="checkbox-inline">
-						<input type="checkbox" ng-model="activeproject.categories['design']" ng-true-value="1" ng-false-value="0">design
-					</label>
-					<label class="checkbox-inline">
-						<input type="checkbox" ng-model="activeproject.categories['front-end']" ng-true-value="1" ng-false-value="0">front-end
-					</label>
-					<label class="checkbox-inline">
-						<input type="checkbox" ng-model="activeproject.categories['back-end']" ng-true-value="1" ng-false-value="0">back-end
-					</label>
-					<label class="checkbox-inline">
-						<input type="checkbox" ng-model="activeproject.categories['3d']" ng-true-value="1" ng-false-value="0">3d
-					</label>
+
+				<div class="panel panel-default">
+					<div class="panel-heading">Thumbs</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<div class="row">
+								<div class="col-xs-3">
+									<label class="pull-right">count</label>
+								</div>
+								<div class="col-xs-3">
+									<input type="text" class="form-control" placeholder="thumbs" ng-model="activeproject.thumbs"/></div>
+								</div>
+							</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-xs-3">
+									<label class="pull-right">Width</label>
+								</div>
+							<div class="col-xs-9">
+								<label><input type="radio" ng-model="activeproject.width" name="activeproject.width" value="0">0</label>
+								<label><input type="radio" ng-model="activeproject.width" name="activeproject.width" value="1">1</label>
+								<label><input type="radio" ng-model="activeproject.width" name="activeproject.width" value="2">2</label>
+								<label><input type="radio" ng-model="activeproject.width" name="activeproject.width" value="3">3</label>
+								<label><input type="radio" ng-model="activeproject.width" name="activeproject.width" value="4">4</label>
+								<label><input type="radio" ng-model="activeproject.width" name="activeproject.width" value="5">5</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-xs-3">
+									<label class="pull-right">Height</label>
+								</div>
+								<div class="col-xs-9">
+									<label><input type="radio" ng-model="activeproject.height" name="activeproject.height" value="0">0</label>
+									<label><input type="radio" ng-model="activeproject.height" name="activeproject.height" value="1">1</label>
+									<label><input type="radio" ng-model="activeproject.height" name="activeproject.height" value="2">2</label>
+									<label><input type="radio" ng-model="activeproject.height" name="activeproject.height" value="3">3</label>
+									<label><input type="radio" ng-model="activeproject.height" name="activeproject.height" value="4">4</label>
+									<label><input type="radio" ng-model="activeproject.height" name="activeproject.height" value="5">5</label>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -46,7 +46,7 @@
 				</div>
 			</div>
 			<div class="col-md-9 clearfix col-sm-12" >
-				<div isotope-container class="isotope-container">
+				<div isotope-container class="isotope-container" iso-options="{layoutMode:'packery'}">
 					<div ng-repeat="i in projectImagesCount()" isotope-item class="image_thumb" ng-class="getPictureClass($index)" >
 						<img  
 						 alt="{{project.name}} | {{$index}}"

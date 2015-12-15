@@ -6318,6 +6318,32 @@ nav {
   position: relative;
   z-index: 1000; }
 
+#page-admin .form-group label {
+  margin-top: 8px !important; }
+
+#page-admin .form-group label > input[type="radio"] {
+  margin-left: 5px; }
+
+#page-admin .btn-group .glyphicon {
+  top: 3px; }
+
+#page-admin .btn-group .btn-toggable.active {
+  color: white;
+  background: #7dc800; }
+
+#page-admin .btn-group .btn-priority {
+  cursor: default;
+  width: 75px; }
+  #page-admin .btn-group .btn-priority:hover {
+    background-color: white; }
+
+#page-admin .projects-list {
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+  #page-admin .projects-list li {
+    margin-top: 2px; }
+
 .si-icons span {
   display: inline-block;
   width: 32px;

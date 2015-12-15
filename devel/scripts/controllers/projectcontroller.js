@@ -3,8 +3,8 @@ xportfolio.controller("projectController", function($state, $scope, $stateParams
     $scope.project = portfolioProjectsService.getProject($scope.projectId);
     $scope.allProjects = portfolioProjectsService.getAllProjects();
 
-    $scope.$emit('iso-option', {layoutMode: 'packery'});
-    $scope.$emit('iso-method', {name:'layout', params:null});
+    /*$scope.$emit('iso-option', {layoutMode: 'packery'});
+    $scope.$emit('iso-method', {name:'layout', params:null});*/
 
     $scope.project.$loaded(function(){
   	    if ($scope.project.name == undefined){
@@ -16,10 +16,10 @@ xportfolio.controller("projectController", function($state, $scope, $stateParams
         $scope.getNextPrevProjects();
     });
 
-    $timeout(function(){
+    /*$timeout(function(){
         $scope.$emit('iso-option', {layoutMode: 'packery'});
         $scope.$emit('iso-method', {name:'layout', params:null});
-    }, 1000);
+    }, 1000);*/
 
     $scope.prevProjectID = -1;
     $scope.nextProjectID = -1;
