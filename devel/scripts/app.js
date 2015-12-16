@@ -7,7 +7,8 @@ var xportfolio = angular.module('xportfolio', [
   'iso.directives',
   'angular-images-loaded',
   'ngTouch',
-  'adaptive.detection'
+  'adaptive.detection',
+  'oitozero.ngSweetAlert'
 ]);
 
 xportfolio.config(function($stateProvider, $urlRouterProvider,$locationProvider) {

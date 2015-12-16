@@ -38,6 +38,21 @@ xportfolio.service('portfolioProjectsService', function($firebaseArray, $firebas
     });
     return deferred.promise();
   }
+  this.getAuth = function(){
+    var ref = new Firebase("https://xportfolio.firebaseio.com");
+    return ref.getAuth();
+  }
+  this.testWrite = function(){
+    var deferred = $.Deferred();
+    var testdata = $firebaseObject(new Firebase("https://xportfolio.firebaseio.com/writetest/"));
+    testdata.writeme = 0;
+    testdata.$save().then(function(ref) {
+        deferred.resolve(true);
+      }, function(error) {
+        deferred.reject(false);
+    });
+    return deferred.promise();
+  }
 });
 
 xportfolio.service('apiaryConnectionService', function($http, $q){

@@ -1,4 +1,4 @@
-xportfolio.controller("adminController", function($scope, portfolioProjectsService, $state,$filter,$timeout) {
+xportfolio.controller("adminController", function($scope, portfolioProjectsService, $state,$filter,$timeout,$interval,SweetAlert) {
     $scope.allProjects = portfolioProjectsService.getAllProjectsObjects();
 
     $scope.projectCategories = {};
@@ -22,20 +22,58 @@ xportfolio.controller("adminController", function($scope, portfolioProjectsServi
         token: "",
         loginFailed: false,
         logoutFailed: false,
-        authenticated: false
+        authenticated: false,
+        writeEnabled: false,
     };
 
-    /*var ref = new Firebase("https://xportfolio.firebaseio.com");
-    var authData = ref.getAuth();
-    $timeout(function(){
+
+    $scope.testWritePermission = function(){
+        var testWrite = portfolioProjectsService.testWrite();
+        handleWriteTest(testWrite);
+    }
+
+    function handleWriteTest(promise){
+        $.when(promise)
+            .then(
+                function (authData) {
+                    $scope.user.writeEnabled = true;
+                }, function (err) {
+                    $scope.user.writeEnabled = false;
+                }
+            );
+    }
+
+    $scope.checkAuthentication = function(){
+        var authData = portfolioProjectsService.getAuth();
         if (authData) {
-            console.log("Authenticated user with uid:", authData.uid);
-        } 
-        console.log(authData);
-    },10000);*/
-    
-    
-    
+            $scope.user.loginData.email = authData.password.email;
+            $scope.user.uid = authData.uid;
+            $scope.user.token = authData.token;
+            $scope.user.loginFailed = false;
+            $scope.user.logoutFailed = false;
+            $scope.user.authenticated = true;   
+            $scope.testWritePermission();
+        } else {
+            if ($scope.user.authenticated){
+                $scope.user.loginData.email = "";
+                $scope.user.uid = "";
+                $scope.user.token = "";
+                $scope.user.loginFailed = false;
+                $scope.user.logoutFailed = false;
+                $scope.user.authenticated = false;
+                SweetAlert.swal({
+                    title: "Your session expired.",
+                    type: "warning",
+                    confirmButtonColor: "#DD6B55",
+                });
+            }
+        }
+    }
+    $scope.checkAuthentication();
+    $interval(function(){
+        $scope.checkAuthentication();
+    },20000);
+ 
     $scope.logoutofFireBase = function(){
         var logoutPromise = portfolioProjectsService.unAuth();
         hendleUnAuthResponse(logoutPromise);
@@ -50,7 +88,6 @@ xportfolio.controller("adminController", function($scope, portfolioProjectsServi
         $.when(promise)
             .then(
                 function (authData) {
-                    console.log(authData);
                     $scope.$apply(function(){
                             $scope.user.uid = authData.uid;
                             $scope.user.token = authData.token;
@@ -60,14 +97,14 @@ xportfolio.controller("adminController", function($scope, portfolioProjectsServi
                         }
                     );
                     $scope.allProjects = portfolioProjectsService.getAllProjectsObjects();
-
-                    console.log($scope.user);
+                    $scope.testWritePermission();
                 }, function (err) {
                     $scope.$apply(function(){
                             $scope.user.loginFailed = true;
                             $scope.user.authenticated = false;
                         }
                     );
+                    $scope.testWritePermission();
                 }
             );
     }
@@ -99,8 +136,15 @@ xportfolio.controller("adminController", function($scope, portfolioProjectsServi
     $scope.filterTypes = ['priority','name'];
     $scope.orderfilter = 'priority';
 
+    $scope.projectActivationEnabled = function(){
+        if ($scope.orderfilter == 'priority'){
+            return true;
+        }
+    }
+
     $scope.setFilter = function(filter){
         $scope.orderfilter = filter;
+        $scope.deactivateProjects(true);
     }
 
     $scope.toggleCategory = function(category){
@@ -108,18 +152,28 @@ xportfolio.controller("adminController", function($scope, portfolioProjectsServi
     }
 
     $scope.toggleActiveProject = function(project){
-        project.active = !project.active;
+        if($scope.projectActivationEnabled()){
+            project.active = !project.active;
+        }
     }
 
     $scope.setActiveProject = function(project){
         $scope.activeproject = project;
     }
 
-    $scope.deactivateProject = function(project){
-        project.active = false;
-        project.admineditstart = false;
-        project.admineditend = false;
+    // if overwriteRequirements set to true then ...
+    $scope.deactivateProjects = function(overwriteRequirements){
+        angular.forEach($scope.allProjects, function(object,key){
+            if (overwriteRequirements){
+                object.active = false;
+                object.admineditstart = false;
+                object.admineditend = false; 
+            } else {
+                $scope.deactivateProject(object);
+            }
+        });
     }
+
     $scope.toggleAdminEditStart = function(project){
         angular.forEach($scope.allProjects, function(object,key){
             object.admineditstart = false;
@@ -136,7 +190,7 @@ xportfolio.controller("adminController", function($scope, portfolioProjectsServi
     }
     $scope.reToggleAllProjects = function(){
         var toggling = false;
-        var f1 = $filter('customFilter')($scope.allProjects, $scope.projectCategories);
+        var f1 = $filter('categoriesFilter')($scope.allProjects, $scope.projectCategories);
         var f2 = $filter('toArray')(f1);
         var f3 = $filter('orderBy')(f2, 'priority');
         angular.forEach(f3, function(project,key){
@@ -144,14 +198,25 @@ xportfolio.controller("adminController", function($scope, portfolioProjectsServi
                 toggling = true;
             };
             if (toggling){
-                project.active = true;
+                $scope.activateProject(project);
             } else {
-                project.active = false;
+                $scope.deactivateProject(project);
             };
             if (project.admineditend == true){
                 toggling = false;
             };
         });
+    }
+
+    $scope.activateProject = function(project){
+        if ($scope.projectActivationEnabled()){
+            project.active = true;
+        }
+    }
+    $scope.deactivateProject = function(project){
+        if ($scope.projectActivationEnabled()){
+            project.active = false;
+        }
     }
 
     $scope.adminModeProjectMove = {};
@@ -185,7 +250,7 @@ xportfolio.controller("adminController", function($scope, portfolioProjectsServi
 
     $scope.saveProjects = function(){
         $scope.allProjects.$save();
-        $scope.reloadProjects(); 
+        //$scope.reloadProjects(); 
     }
 
     $scope.removePictureSettings = function(key){
@@ -201,9 +266,17 @@ xportfolio.controller("adminController", function($scope, portfolioProjectsServi
         });
         $scope.activeproject['pictures_width'].push({maxKey : 2});
     }
+
+    $scope.getActiveProjectsImageWidths = function(){
+        var outField = [];
+        for(var x = 0; x < $scope.activeproject.images; x++) {
+            outField.push(x);
+        };
+        return outField;
+    }
 });
 
-xportfolio.filter('customFilter', function () {
+xportfolio.filter('categoriesFilter', function () {
     return function (items, projectCategories) {
         var filtered = {};
         angular.forEach(items, function(project,projectValue){
@@ -225,6 +298,5 @@ xportfolio.filter('toArray', function() {
         });
         return outArray;
     }
-
 });
 

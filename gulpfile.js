@@ -6,8 +6,9 @@ var uglify = require('gulp-uglify');
 var gutil = require('gulp-util');
 var sourcemaps = require('gulp-sourcemaps');
 var coffee = require('gulp-coffee');
-
+var concatCss = require('gulp-concat-css');
 var karma = require('gulp-karma');
+var minifyCss = require('gulp-minify-css');
 
 gulp.task('test', function() {
   // Be sure to return the stream
@@ -33,7 +34,7 @@ gulp.task('autotest', function() {
   	],['test']);
 });
 
-gulp.task('default', ['sass', 'scripts', 'test','watch']);
+gulp.task('default', ['sass', 'css', 'scripts', 'test','watch']);
 
 gulp.task('watch', function(){
 	gulp.watch([
@@ -48,6 +49,15 @@ gulp.task('watch', function(){
 		], ['scripts', 'test']);
 	});
 
+gulp.task('css' , function() {
+	return gulp.src([
+		'./devel/bower_components/sweetalert/dist/sweetalert.css',
+		])
+	.pipe(concatCss("./public/css/plugins.css"))
+	.pipe(minifyCss({compatibility: 'ie8'}))
+    .pipe(gulp.dest('./'));
+});
+
 gulp.task('sass', function () {
   return gulp.src('./devel/sass/style.scss')
   	.pipe(sourcemaps.init())
@@ -57,6 +67,7 @@ gulp.task('sass', function () {
     		this.emit('end');
     	})
     )
+    //.pipe(minifyCss({compatibility: 'ie8'}))
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('./public/css/'));
 });
@@ -107,6 +118,10 @@ gulp.task('scripts', ['coffee'], function() {
 		'./devel/bower_components/angular-animate/angular-animate.min.js',	
 		'./devel/bower_components/angulartics/dist/angulartics.min.js',
 		'./devel/bower_components/angulartics-google-analytics/dist/angulartics-google-analytics.min.js',	
+
+        "./devel/bower_components/sweetalert/dist/sweetalert.min.js",
+        "./devel/bower_components/angular-sweetalert/SweetAlert.min.js",
+
 		'./devel/_components/Snap_svg/dist/snap.svg.js',
 		'./devel/_components/tympanus/svgicons/svgicons-config.js',
 		'./devel/_components/tympanus/svgicons/svgicons.js',
