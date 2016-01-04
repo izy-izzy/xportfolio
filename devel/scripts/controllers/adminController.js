@@ -250,7 +250,7 @@ xportfolio.controller("adminController", function($scope, portfolioProjectsServi
 
     $scope.saveProjects = function(){
         $scope.allProjects.$save();
-        //$scope.reloadProjects(); 
+        $scope.reloadProjects(); 
     }
 
     $scope.removePictureSettings = function(key){
@@ -273,6 +273,94 @@ xportfolio.controller("adminController", function($scope, portfolioProjectsServi
             outField.push(x);
         };
         return outField;
+    }
+
+    $scope.newProject = function(){
+        SweetAlert.swal({   
+            title: "ID of project",   
+            text: "use only strings",   
+            type: "input",   
+            showCancelButton: true,   
+            closeOnConfirm: false,
+            animation: "slide-from-top",
+            inputPlaceholder: "ID" },
+            function(inputValue){   
+                var returnKey = $scope.addNewProject(inputValue);
+                if (inputValue === false){
+                    return false;
+                }
+                if (inputValue === "") {
+                    swal.showInputError("ident of project can not be clear!");
+                    return false;
+                }
+                if (returnKey === false){
+                    swal.showInputError("Already exists!");
+                    return false;
+                } else {
+                    swal("Project Created!", "The ident of project is set to: " + inputValue, "success");
+                    return true;
+                }
+            return true;
+        });
+    }
+
+    $scope.addNewProject = function(id){
+        if ($scope.allProjects.hasOwnProperty(id)){
+            return false;
+        }
+        
+        $scope.projectToAdd = {
+            "name": "name of " + id,
+            "perex":"",
+            "priority": 9999,
+            "technology":"",
+            "description":"",
+            "contribution":"",
+            categories: {
+                "design" : 1,
+                "front-end": 1,
+                "back-end": 1,
+                "3d" : 1
+            },
+            "images":0,
+            "pictures_width": {
+                "0" : 0
+            },
+            "thumbs" : 0,
+            "width" : 0,
+            "height": 0,
+            "hreflink" : "",
+            "active": false,
+            "admineditstart": false,
+            "admineditend": false
+        };
+        console.log($scope.projectToAdd);
+        $scope.allProjects[id] = $scope.projectToAdd;
+        console.log($scope.allProjects);
+        $scope.saveProjects();
+    }
+
+    $scope.removeProject = function(project){
+        SweetAlert.swal({
+            title: "Do you want to remove project " + project.name,
+            text: "You will not be able to recover this project!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        }, function(isConfirm){
+            if (isConfirm){
+                //Removal of object neeeded
+                //console.log($scope.allProjects[project]);
+                //project.$remove;
+                //project = null;
+                swal("Deleted!", "Project " + project.name + " has been deleted.", "success"); 
+            } else {
+                swal("Uff!", "Project " + project.name + " still lives!", "error"); 
+            }
+        });
     }
 });
 

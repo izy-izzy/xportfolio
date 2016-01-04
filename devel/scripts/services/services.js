@@ -1,6 +1,6 @@
 xportfolio.service('portfolioProjectsService', function($firebaseArray, $firebaseObject) {
-  this.getProject = function(index) {
-    return $firebaseObject(new Firebase("https://xportfolio.firebaseio.com/projects/"+index));
+  this.getProject = function(id) {
+    return $firebaseObject(new Firebase("https://xportfolio.firebaseio.com/projects/"+id));
   }
   this.getAllProjects = function() {
     return $firebaseArray(new Firebase("https://xportfolio.firebaseio.com/projects/").orderByChild("priority"));

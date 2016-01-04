@@ -20,72 +20,89 @@
 			</div>
 		</div>
 		<hr/>
-		<div class="row" ng-show="user.authenticated && user.writeEnabled">
+		<div class="row">
 			<div class="col-md-6">
-				<div class="row filters">
-					<span class="pull-left"> Filter categories:</span>
-					<div class="btn-group pull-right">
-						<a ng-repeat="(category, value) in projectCategories" class='filter btn btn-default' ng-class="{'active': value}" ng-click="toggleCategory(category)" ng-animate>{{category}}</a>
-					</div>
-				</div>
-				<div class="row filters">
-					<span class="pull-left">Order by:</span>
-					<div class="btn-group pull-right">
-						<a ng-repeat="filter in filterTypes" class='filter btn btn-default' ng-click="setFilter(filter)" ng-class="{'active': orderfilter == filter}" ng-animate>{{filter}}</a>
-					</div>
-				</div>
-				<ul class="projects-list">
-					<li
-						ng-repeat="project in allProjects | categoriesFilter:projectCategories | toArray | orderBy: orderfilter" 
-			            ng-class="" 
-						ng-attr-id="{{ 'project-' + project.$id }}"
-						alt="{{project.name}}">
-						<div class="btn-group">
-							<span ng-bind="project.priority" class="btn btn-default btn-priority"></span>
-							<a href="javascript:void(0)" class="btn btn-default" ng-class="{'active': project.admineditstart}" ng-click="toggleAdminEditStart(project)">
-								<i class="glyphicon glyphicon-chevron-down"></i>
-							</a>
-							<a href="javascript:void(0)" class="btn btn-default" ng-class="{'active': project.admineditend}" ng-click="toggleAdminEditEnd(project)">
-								<i class="glyphicon glyphicon-chevron-up"></i>
-							</a>
-							<a href="javascript:void(0)" class="btn btn-default btn-toggable" ng-class="{'active': project.active}" ng-click="toggleActiveProject(project)">
-								<i class="glyphicon glyphicon-ok"></i>
-							</a>
-							<a href="javascript:void(0)" class="btn btn-danger btn-default" ng-click="deactivateProject(project)">
-								<i class="glyphicon glyphicon-remove"></i>
-							</a>
-							<a href="javascript:void(0)" ng-bind="project.name" ng-click="setActiveProject(project)" class="btn-default btn"></a>
+				<h1>Projects</h1>
+				<div class="panel panel-default" ng-show="user.authenticated && user.writeEnabled">
+					<div class="panel-heading">Filter</div>
+					<div class="panel-body">
+						<div class="row filters">
+							<span class="pull-left"> Filter categories:</span>
+							<div class="btn-group pull-right">
+								<a ng-repeat="(category, value) in projectCategories" class='filter btn btn-default' ng-class="{'active': value}" ng-click="toggleCategory(category)" ng-animate>{{category}}</a>
+							</div>
 						</div>
-					</li>
-				</ul>
-				<hr/>
-				<div class="row">
-					<div class="col-xs-12">
+						<div class="row filters">
+							<span class="pull-left">Order by:</span>
+							<div class="btn-group pull-right">
+								<a ng-repeat="filter in filterTypes" class='filter btn btn-default' ng-click="setFilter(filter)" ng-class="{'active': orderfilter == filter}" ng-animate>{{filter}}</a>
+							</div>
+						</div>
+						<div class="row filters">
+							<div class="btn-group pull-right">
+								<button type="button" class="btn btn-success" ng-click="newProject()"><i class="glyphicon glyphicon-plus-sign"></i> new project</button>
+							</div>
+						</div>
+					</div>
+					<div class="panel-heading">List</div>
+					<div class="panel-body">
+						<ul class="projects-list">
+							<li
+								ng-repeat="project in allProjects | categoriesFilter:projectCategories | toArray | orderBy: orderfilter" 
+					            ng-class="" 
+								ng-attr-id="{{ 'project-' + project.$id }}"
+								alt="{{project.name}}">
+								<div class="btn-group">
+									<span ng-bind="project.priority" class="btn btn-default btn-priority"></span>
+									<a href="javascript:void(0)" class="btn btn-default" ng-class="{'active': project.admineditstart}" ng-click="toggleAdminEditStart(project)">
+										<i class="glyphicon glyphicon-chevron-down"></i>
+									</a>
+									<a href="javascript:void(0)" class="btn btn-default" ng-class="{'active': project.admineditend}" ng-click="toggleAdminEditEnd(project)">
+										<i class="glyphicon glyphicon-chevron-up"></i>
+									</a>
+									<a href="javascript:void(0)" class="btn btn-default btn-toggable" ng-class="{'active': project.active}" ng-click="toggleActiveProject(project)">
+										<i class="glyphicon glyphicon-ok"></i>
+									</a>
+									<a href="javascript:void(0)" class="btn btn-danger btn-default" ng-click="deactivateProject(project)">
+										<i class="glyphicon glyphicon-remove"></i>
+									</a>
+									<a href="javascript:void(0)" ng-bind="project.name" ng-click="setActiveProject(project)" class="btn-default btn"></a>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="panel-heading">Actions</div>
+					<div class="panel-body">
 					    <div class="input-group">
 					      	<input type="number" class="form-control" placeholder="{{adminModeProjectMove.value}}" ng-model="adminModeProjectMove.value"/>
 					      	<div class="input-group-btn">
 					        	<button type="button" class="btn btn-default" ng-class="{'disabled': !anyProjectActive()}" ng-click="movePriority()">move priority</button>
 					        	<button type="button" class="btn btn-primary" ng-click="saveProjects()"><i class="glyphicon glyphicon-fire"></i> fire the DB!</button>
 					        	<button type="button" class="btn btn-danger" ng-click="deactivateProjects()"><i class="glyphicon glyphicon-remove"></i> remove all selection</button>
-							</a>
-					      	</div>
+							</div>
 					    </div>
 					</div>
+					<hr/>
 				</div>
 			</div>
-			
 			<div class="col-md-6" ng-if="activeproject != undefined">
 				<div class="row">
 					<div class="col-xs-12">
+						<h1 ng-bind="activeproject.name"></h1>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">Actions</div>
+					<div class="panel-body">
 					    <div class="input-group pull-right">
 					      	<div class="btn-group">
 					        	<button type="button" class="btn btn-default" ng-click="reloadProjects()"><i class="glyphicon glyphicon-refresh"></i> reload </button>
 					      		<button type="button" class="btn btn-primary" ng-click="saveProjects()"><i class="glyphicon glyphicon-fire"></i> fire the DB!</button>
+					      		<button type="button" class="btn btn-danger" ng-click="removeProject(activeproject)"><i class="glyphicon glyphicon-remove"></i> delete this project!</button>
 					      	</div>
 					    </div>
 					</div>
 				</div>
-				<hr/>
 				<div class="panel panel-default">
 					<div class="panel-heading">Descriptions</div>
 					<div class="panel-body">
@@ -146,6 +163,16 @@
 								</div>
 								<div class="col-xs-9">
 									<textarea class="form-control" placeholder="contribution" ng-model="activeproject.contribution"/>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-xs-3">
+									<label class="pull-right">hreflink</label>
+								</div>
+								<div class="col-xs-9">
+									<input class="form-control" placeholder="hreflink" ng-model="activeproject.hreflink"/>
 								</div>
 							</div>
 						</div>
@@ -244,6 +271,18 @@
 								</div>
 							</div>
 						</div>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">Actions</div>
+					<div class="panel-body">
+					    <div class="input-group pull-right">
+					      	<div class="btn-group">
+					        	<button type="button" class="btn btn-default" ng-click="reloadProjects()"><i class="glyphicon glyphicon-refresh"></i> reload </button>
+					      		<button type="button" class="btn btn-primary" ng-click="saveProjects()"><i class="glyphicon glyphicon-fire"></i> fire the DB!</button>
+					      		<button type="button" class="btn btn-danger" ng-click="removeProject(activeproject)"><i class="glyphicon glyphicon-remove"></i> delete this project!</button>
+					      	</div>
+					    </div>
 					</div>
 				</div>
 			</div>
