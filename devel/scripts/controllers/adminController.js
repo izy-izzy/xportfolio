@@ -113,7 +113,6 @@ xportfolio.controller("adminController", function($scope, portfolioProjectsServi
         $.when(promise)
             .then(
                 function (succ) {
-                    console.log(succ);
                     $scope.$apply(function(){
                             $scope.user.loginFailed = false;
                             $scope.user.authenticated = false;
@@ -121,9 +120,7 @@ xportfolio.controller("adminController", function($scope, portfolioProjectsServi
                             $scope.user.token = "";
                         }
                     );
-                    console.log($scope.user);
                 }, function (err) {
-                    console.log(err);
                     $scope.$apply(function(){
                             $scope.user.logoutfailed = true;
                             $scope.user.authenticated = true;
@@ -256,12 +253,10 @@ xportfolio.controller("adminController", function($scope, portfolioProjectsServi
     $scope.removePictureSettings = function(key){
         var index = $scope.activeproject['pictures_width'].indexOf(key);
         $scope.activeproject['pictures_width'].splice(index, 1); 
-        console.log($scope.activeproject);
     }
     $scope.addPictureSettings = function(){
         var maxKey = 0;
         angular.forEach($scope.activeproject['pictures_width'], function(key,value){
-            console.log(key, value);
             maxKey = Math.max(maxKey,key);
         });
         $scope.activeproject['pictures_width'].push({maxKey : 2});
@@ -334,9 +329,7 @@ xportfolio.controller("adminController", function($scope, portfolioProjectsServi
             "admineditstart": false,
             "admineditend": false
         };
-        console.log($scope.projectToAdd);
         $scope.allProjects[id] = $scope.projectToAdd;
-        console.log($scope.allProjects);
         $scope.saveProjects();
     }
 
@@ -352,10 +345,12 @@ xportfolio.controller("adminController", function($scope, portfolioProjectsServi
             closeOnCancel: false
         }, function(isConfirm){
             if (isConfirm){
-                //Removal of object neeeded
-                //console.log($scope.allProjects[project]);
-                //project.$remove;
-                //project = null;
+                angular.forEach($scope.allProjects, function(key,value){
+                    if (key === project){
+                        $scope.allProjects[value] = null;
+                        $scope.saveProjects();
+                    }
+                });
                 swal("Deleted!", "Project " + project.name + " has been deleted.", "success"); 
             } else {
                 swal("Uff!", "Project " + project.name + " still lives!", "error"); 
