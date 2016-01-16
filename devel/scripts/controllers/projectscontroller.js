@@ -27,7 +27,9 @@ xportfolio.controller("projectsController", function($scope, portfolioProjectsSe
     $scope.projectClass = function(project){
         var classString = "all";
         angular.forEach(project.categories, function(value,key){
-            classString = classString + " " + key;
+            if (value === 1){
+                classString = classString + " " + key;
+            }
         })
         classString = classString + " x-" + project.width;
     	return classString;

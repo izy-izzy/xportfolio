@@ -15,8 +15,12 @@
 					<h2 ng-bind="project.perex" class="perex"></h2>
 				</div>
 				<div ng-if="project.description">
-					<h3 ng-bind="project.description" class="desc"></h2>
+					<h3 ng-bind="project.description" class="desc"></h3>
 				</div>
+				<div ng-if="project.hreflink">
+					<a href="{{project.hreflink}}" target="_blank" class="info-text" ng-bind="project.hreflink"></a>
+				</div>
+				<br/>
 
 				<div ng-if="project.contribution" class="info-block">
 					<h2>Contribution</h2>
@@ -26,13 +30,13 @@
 					<h2>Developed for</h2>
 					<span ng-bind="project.developedfor" class="info-text"></span>
 				</div>
-				<div ng-if="project.hreflink" class="info-block">
-					<h2>Link</h2>
-					<a href="{{project.hreflink}}" target="_blank" class="info-text" ng-bind="project.hreflink"></a>
-				</div>
 				<div ng-if="project.technology" class="info-block">
 					<h2>Used technology</h2>
 					<span ng-bind="project.technology" class="info-text"></span>
+				</div>
+				<div ng-if="project.developer.name && project.developer.link" class="info-block">
+					<h2>Developed for</h2>
+					<a href="{{project.developer.link}}" target="_blank" class="info-text" ng-bind="project.developer.name"></a>
 				</div>
 				<div class="navigation-projects">
 					<a ui-sref="project({projectID:prevProjectID})" class="pull-left prev btn-animated" ng-click="goToProject('prev')">

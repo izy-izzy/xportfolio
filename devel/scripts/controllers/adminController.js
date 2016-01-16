@@ -325,6 +325,10 @@ xportfolio.controller("adminController", function($scope, portfolioProjectsServi
             "width" : 0,
             "height": 0,
             "hreflink" : "",
+            developer : {
+                "name" : "",
+                "link" :""
+            },
             "active": false,
             "admineditstart": false,
             "admineditend": false

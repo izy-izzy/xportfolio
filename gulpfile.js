@@ -135,7 +135,7 @@ gulp.task('scripts', ['coffee'], function() {
 		])
 	.pipe(concat('app.min.js'))
 	//disable for devel 
-	/*
+	
 	.pipe(sourcemaps.init())
 	.pipe(uglify({mangle: false}).on('error', 
     	function(e) {
@@ -143,6 +143,6 @@ gulp.task('scripts', ['coffee'], function() {
     		this.emit('end');
     	}))
 	.pipe(sourcemaps.write('./'))
-	*/
+	
 	.pipe(gulp.dest('./public/js/'))
 });
