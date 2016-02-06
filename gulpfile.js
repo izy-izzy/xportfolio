@@ -11,19 +11,14 @@ var karma = require('gulp-karma');
 var minifyCss = require('gulp-minify-css');
 
 gulp.task('test', function() {
-  // Be sure to return the stream
-  // NOTE: Using the fake './foobar' so as to run the files
-  // listed in karma.conf.js INSTEAD of what was passed to
-  // gulp.src !
   return gulp.src('./foobar')
     .pipe(karma({
       configFile: 'karma.conf.js',
       action: 'run'
     }))
     .on('error', function(err) {
-      // Make sure failed tests cause gulp to exit non-zero
       console.log(err);
-      this.emit('end'); //instead of erroring the stream, end it
+      this.emit('end');
     });
 });
 
@@ -67,7 +62,6 @@ gulp.task('sass', function () {
     		this.emit('end');
     	})
     )
-    //.pipe(minifyCss({compatibility: 'ie8'}))
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('./public/css/'));
 });
@@ -110,8 +104,6 @@ gulp.task('scripts', ['coffee'], function() {
 		'./devel/bower_components/angular-isotope/dist/angular-isotope.js',
 		'./devel/bower_components/isotope-packery/packery-mode.pkgd.js',
 		
-		//'./devel/bower_components/angular-masonry/angular-masonry.js',
-
 		'./devel/bower_components/angular-images-loaded/angular-images-loaded.js',
 		'./devel/bower_components/angular-touch/angular-touch.min.js',
 
@@ -134,8 +126,6 @@ gulp.task('scripts', ['coffee'], function() {
         './devel/scripts/controllers/*.js',
 		])
 	.pipe(concat('app.min.js'))
-	//disable for devel 
-	
 	.pipe(sourcemaps.init())
 	.pipe(uglify({mangle: false}).on('error', 
     	function(e) {
