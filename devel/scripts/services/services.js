@@ -1,20 +1,20 @@
-xportfolio.service('portfolioProjectsService', function($firebaseArray, $firebaseObject) {
+xportfolio.service('portfolioProjectsService', function($firebaseArray, $firebaseObject, $rootScope) {
   this.getProject = function(id) {
-    return $firebaseObject(new Firebase("https://xportfolio.firebaseio.com/projects/"+id));
+    return $firebaseObject(new Firebase($rootScope.settings.fireBaseHttp+"/projects/"+id));
   }
   this.getAllProjects = function() {
-    return $firebaseArray(new Firebase("https://xportfolio.firebaseio.com/projects/").orderByChild("priority"));
+    return $firebaseArray(new Firebase($rootScope.settings.fireBaseHttp+"/projects/").orderByChild("priority"));
   }
   this.getAllProjectsObjects = function(){
-    return $firebaseObject(new Firebase("https://xportfolio.firebaseio.com/projects/").orderByChild("priority"));
+    return $firebaseObject(new Firebase($rootScope.settings.fireBaseHttp+"/projects/").orderByChild("priority"));
   }
   this.updateAll = function(data){
-    new Firebase("https://xportfolio.firebaseio.com/projects/").update(data);
+    new Firebase($rootScope.settings.fireBaseHttp+"/projects/").update(data);
     return true;
   }
   this.authWithPassword = function(user) {
     var deferred = $.Deferred();
-    var ref = new Firebase("https://xportfolio.firebaseio.com");
+    var ref = new Firebase($rootScope.settings.fireBaseHttp);
     ref.authWithPassword(user, function onAuth(err, user) {
         if (err) {
             deferred.reject(err);
@@ -27,9 +27,8 @@ xportfolio.service('portfolioProjectsService', function($firebaseArray, $firebas
   }
   this.unAuth = function(){
     var deferred = $.Deferred();
-    var ref = new Firebase("https://xportfolio.firebaseio.com");
+    var ref = new Firebase($rootScope.settings.fireBaseHttp);
      ref.unauth(function onAuth(value) {
-      console.log(value);
         if (value == null) {
           deferred.resolve(true);
         } else {
@@ -39,12 +38,12 @@ xportfolio.service('portfolioProjectsService', function($firebaseArray, $firebas
     return deferred.promise();
   }
   this.getAuth = function(){
-    var ref = new Firebase("https://xportfolio.firebaseio.com");
+    var ref = new Firebase($rootScope.settings.fireBaseHttp);
     return ref.getAuth();
   }
   this.testWrite = function(){
     var deferred = $.Deferred();
-    var testdata = $firebaseObject(new Firebase("https://xportfolio.firebaseio.com/writetest/"));
+    var testdata = $firebaseObject(new Firebase($rootScope.settings.fireBaseHttp+"/writetest/"));
     testdata.writeme = 0;
     testdata.$save().then(function(ref) {
         deferred.resolve(true);
@@ -55,10 +54,28 @@ xportfolio.service('portfolioProjectsService', function($firebaseArray, $firebas
   }
 });
 
-xportfolio.service('apiaryConnectionService', function($http, $q){
+xportfolio.service('apiaryConnectionService', function($http, $q, $rootScope){
   return {
     getTestData: function(){
-      return $http.get('http://private-d39ab-xportfolio.apiary-mock.com/questions');
+      return $http.get($rootScope.settings.apiaryTestHttp);
+    }
+  }
+});
+
+xportfolio.service('settingsService', function($http, $q){
+  return {
+    loadSettings : function(){
+      var deferred = $q.defer();
+      $http.get('settings.json')
+        .then(
+          function success(response) {
+            deferred.resolve(response.data);
+          }, 
+          function error(response) {
+            deferred.reject;
+          }
+        );
+      return deferred.promise;
     }
   }
 });

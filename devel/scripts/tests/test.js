@@ -11,23 +11,20 @@ describe('Controllers Test', function() {
   var $controller;
 
   beforeEach(
-    inject(function(_$controller_){
+    inject(function(_$controller_, $rootScope){
       $controller = _$controller_;
+      $rootScope.settings = {
+        fireBaseHttp : 'https://xportfolio.firebaseio.com',
+        apiaryTestHttp : 'http://private-d39ab-xportfolio.apiary-mock.com/questions'
+      }
   }));
 
   describe('Controllers test', function() {
     it('Existence of controllers', function() {
       var $scope = {};
-      //var $scope = $rootScope.$new();
       var introController = $controller('introController', { $scope: $scope });
-      /*var portfolioController = $controller('portfolioController', { $scope: $scope });
-      var projectController = $controller('projectController', { $scope: $scope });
-      var projectImageController = $controller('projectImageController', { $scope: $scope });*/
       var error404Controller = $controller('error404Controller', { $scope: $scope });
       var bioController = $controller('bioController', { $scope: $scope });
-
-      /*$scope.passTest();
-      expect($scope.pass).toEqual(true);*/
     });
   });
 });

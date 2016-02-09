@@ -45,7 +45,11 @@ xportfolio.config(function($stateProvider, $urlRouterProvider,$locationProvider)
       url: "/error404",
       templateUrl: "templates/error404.html",
     });
-}).run(function($rootScope, $state) {
+}).run(function($rootScope, $state, settingsService) {
   $rootScope.$state = $state;
+  settingsService.loadSettings().then(function(data) {
+    $rootScope.settings = data;
+  });    
+ 
 });
 

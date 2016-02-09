@@ -15,7 +15,7 @@ xportfolio.controller("projectsController", function($scope, portfolioProjectsSe
                 }
             });
         })
-        console.log($scope.projects);
+        //console.log($scope.projects);
     });
 
     $timeout(function(){

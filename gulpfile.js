@@ -2,13 +2,13 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var watch = require('gulp-watch');
 var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
+var minifyJS = require('gulp-minify');
 var gutil = require('gulp-util');
 var sourcemaps = require('gulp-sourcemaps');
 var coffee = require('gulp-coffee');
 var concatCss = require('gulp-concat-css');
 var karma = require('gulp-karma');
-var minifyCss = require('gulp-minify-css');
+var cssnano = require('gulp-cssnano');
 
 gulp.task('test', function() {
   return gulp.src('./foobar')
@@ -49,7 +49,7 @@ gulp.task('css' , function() {
 		'./devel/bower_components/sweetalert/dist/sweetalert.css',
 		])
 	.pipe(concatCss("./public/css/plugins.css"))
-	.pipe(minifyCss({compatibility: 'ie8'}))
+	.pipe(cssnano())
     .pipe(gulp.dest('./'));
 });
 
@@ -127,7 +127,7 @@ gulp.task('scripts', ['coffee'], function() {
 		])
 	.pipe(concat('app.min.js'))
 	.pipe(sourcemaps.init())
-	.pipe(uglify({mangle: false}).on('error', 
+	.pipe(minifyJS({mangle: false}).on('error', 
     	function(e) {
     		gutil.log(e);
     		this.emit('end');

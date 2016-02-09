@@ -1,4 +1,4 @@
-xportfolio.controller("adminController", function($scope, portfolioProjectsService, $state,$filter,$timeout,$interval,SweetAlert) {
+xportfolio.controller("adminController", function($scope, portfolioProjectsService, $state, $filter, $timeout, $interval, SweetAlert) {
     $scope.allProjects = portfolioProjectsService.getAllProjectsObjects();
 
     $scope.projectCategories = {};
@@ -77,6 +77,7 @@ xportfolio.controller("adminController", function($scope, portfolioProjectsServi
     $scope.logoutofFireBase = function(){
         var logoutPromise = portfolioProjectsService.unAuth();
         hendleUnAuthResponse(logoutPromise);
+        $scope.activeproject = undefined;
     }
 
     $scope.logintoFireBase = function(){
