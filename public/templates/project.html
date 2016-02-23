@@ -1,53 +1,73 @@
 <div class="page page-project" ng-controller="projectController">
 	<div class="container-fluid" ng-swipe-left="goToProject('next')" ng-swipe-right="goToProject('next')">
-		<div class="row navigation">
+		<nav class="row navigation">
 			<div class="col-md-12">
 				<a ui-sref="projects" class="back">
 					<span class="glyphicon glyphicon-chevron-left"></span>
 					back to projects
 				</a>
 			</div>
-		</div>
-		<div class="row project-info">
+		</nav>
+		<article class="row project-info">
 			<div class="col-md-3 col-sm-12 clearfix">
-				<h1 ng-bind="project.name"></h1>
-				<div ng-if="project.perex">
-					<h2 ng-bind="project.perex" class="perex"></h2>
-				</div>
-				<div ng-if="project.description">
-					<h3 ng-bind="project.description" class="desc"></h3>
-				</div>
-				<div ng-if="project.hreflink">
+				<header>
+					<h1 ng-bind="project.name"></h1>
+					<div ng-if="project.perex">
+						<h2 ng-bind="project.perex" class="perex"></h2>
+					</div>
+					<div ng-if="project.description">
+						<h3 ng-bind="project.description" class="desc"></h3>
+					</div>
+				</header>
+				<nav ng-if="project.hreflink">
 					<a href="{{project.hreflink}}" target="_blank" ng-bind="project.hreflink"></a>
-				</div>
+				</nav>
 				<br/>
 
-				<div ng-if="project.contribution" class="info-block">
-					<h4>Contribution</h4>
-					<span ng-bind="project.contribution"></span>
-				</div>
-				<div ng-if="project.developedfor" class="info-block">
-					<h4>Developed for</h4>
-					<span ng-bind="project.developedfor"></span>
-				</div>
-				<div ng-if="project.technology" class="info-block">
-					<h4>Used technology</h4>
-					<span ng-bind="project.technology"></span>
-				</div>
-				<div ng-if="project.developer.name && project.developer.link" class="info-block">
-					<h4>Developed for</h4>
-					<a href="{{project.developer.link}}" target="_blank" ng-bind="project.developer.name"></a>
-				</div>
-				<div class="navigation-projects">
-					<a ui-sref="project({projectID:prevProjectID})" class="pull-left prev btn btn-animated" ng-click="goToProject('prev')">
-						<span class="glyphicon glyphicon-chevron-left"></span> 
-						prev
-					</a>
-					<a ui-sref="project({projectID:nextProjectID})" class="pull-right next btn btn-animated" ng-click="goToProject('next')">
-						next
-						<span class="glyphicon glyphicon-chevron-right"></span>
-					</a>
-				</div>
+				<section ng-if="project.contribution" class="info-block">
+					<header>
+						<h4>Contribution</h4>
+					</header>
+					<p>
+						<span ng-bind="project.contribution"></span>
+					</p>
+				</section>
+				<section ng-if="project.developedfor" class="info-block">
+					<header>
+						<h4>Developed for</h4>
+					</header>
+					<p>
+						<span ng-bind="project.developedfor"></span>
+					</p>
+				</section>
+				<section ng-if="project.technology" class="info-block">
+					<header>
+						<h4>Used technology</h4>
+					</header>
+					<p>
+						<span ng-bind="project.technology"></span>
+					</p>
+				</section>
+				<section ng-if="project.developer.name && project.developer.link" class="info-block">
+					<header>
+						<h4>Developed for</h4>
+					</header>
+					<p>
+						<span><a href="{{project.developer.link}}" target="_blank" ng-bind="project.developer.name"></a></span>
+					</p>
+				</section>
+				<nav>
+					<div class="navigation-projects">
+						<a ui-sref="project({projectID:prevProjectID})" class="pull-left prev btn btn-animated" ng-click="goToProject('prev')">
+							<span class="glyphicon glyphicon-chevron-left"></span> 
+							prev
+						</a>
+						<a ui-sref="project({projectID:nextProjectID})" class="pull-right next btn btn-animated" ng-click="goToProject('next')">
+							next
+							<span class="glyphicon glyphicon-chevron-right"></span>
+						</a>
+					</div>
+				</nav>
 			</div>
 			<div class="col-md-9 clearfix col-sm-12" >
 				<div isotope-container class="isotope-container" iso-options="{layoutMode:'packery'}">
@@ -61,6 +81,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</article>
 	</div>
 </div> 

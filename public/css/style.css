@@ -5820,7 +5820,8 @@ button.close {
 body {
   height: 100%;
   background-color: white;
-  font-family: 'Source Sans Pro', Helvetica, sans-serif; }
+  font-family: 'Source Sans Pro', Helvetica, sans-serif;
+  line-height: auto; }
 
 .imageLoading, .page-projects .project-box, .page-project .image_thumb, .page-image .image_loader {
   background-image: url("./../images/image_loader.gif");
@@ -5934,9 +5935,9 @@ h4 {
   font-weight: 700; }
 
 p {
-  margin-top: 30px;
   font-size: 24px;
-  font-weight: 300; }
+  font-weight: 300;
+  line-height: 28px; }
   @media screen and (max-height: 650px), (max-width: 480px) {
     p {
       font-size: 16px; } }
@@ -6122,6 +6123,9 @@ nav {
       .page-projects .project-box a:hover {
         color: black;
         text-decoration: none; }
+    .page-projects .project-box p {
+      line-height: 14px;
+      font-size: 12px; }
     .page-projects .project-box:hover {
       background-color: rgba(0, 0, 0, 0.05); }
     .page-projects .project-box.loaded {
@@ -6216,6 +6220,9 @@ nav {
   margin-bottom: 0px;
   font-size: 14px;
   font-weight: 700; }
+
+.page-project .project-info .info-block p {
+  line-height: 17px; }
 
 .page-project .project-info .info-block span {
   font-size: 14px;

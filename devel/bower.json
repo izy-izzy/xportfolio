@@ -34,7 +34,8 @@
     "angular-touch": "~1.4.8",
     "angular-mocks": "~1.4.8",
     "angular-adaptive-detection": "~0.4.1",
-    "angular-sweetalert": "~1.1.0"
+    "angular-sweetalert": "~1.1.0",
+    "angular-aria": "~1.5.0"
   },
   "keywords": [
     "portfolio",

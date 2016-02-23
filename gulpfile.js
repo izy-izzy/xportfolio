@@ -96,6 +96,7 @@ gulp.task('scripts', ['coffee'], function() {
 
 		'./devel/bower_components/isotope/dist/isotope.pkgd.js',
 		'./devel/bower_components/angular/angular.min.js',
+		'./devel/bower_components/angular-aria/angular-aria.min.js',
 		'./devel/bower_components/angular-ui-router/release/angular-ui-router.min.js',
 		'./devel/bower_components/angularfire/dist/angularfire.min.js',
 
