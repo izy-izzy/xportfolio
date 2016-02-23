@@ -1,5 +1,12 @@
 @import '../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss';
-@import 'pages/basics.scss';
+
+@import 'basics/variables.scss';
+@import 'basics/basics.scss';
+@import 'basics/buttons.scss';
+@import 'basics/text.scss';
+@import 'basics/layout.scss';
+@import 'basics/pages.scss';
+
 @import 'pages/navbar.scss';
 @import 'pages/intro.scss';
 @import 'pages/projects.scss';
@@ -8,5 +15,6 @@
 @import 'pages/project.scss';
 @import 'pages/projectimage.scss';
 @import 'pages/admin.scss';
+
 @import 'components/svg-icons.scss';
 @import 'components/animations.scss';

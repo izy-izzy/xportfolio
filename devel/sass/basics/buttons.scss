@@ -1,0 +1,45 @@
+.btn{
+	border-radius: 0px;
+	&.btn-white{
+		text-transform: uppercase;
+		color: black;
+		margin-top: 20px;
+		padding: 15px 30px;
+		background: white;
+		border-radius: 45px;
+		font-size: 16px;
+		font-weight: 400;
+		&:hover{
+			opacity: 0.75;
+		}
+		@media screen and (max-height: 650px) , (max-width: $screen-phone){
+			&{
+				font-size: 16px;
+			}
+		}
+	}
+	&.btn-animated{
+		width: auto;
+		cursor: pointer;
+		display: block;
+		padding: 10px 25px;
+		background-color: black;
+		color: white;
+		text-decoration: none;
+		text-transform: uppercase;
+		&:hover{
+			text-decoration: none;
+			color: white;
+			background-color: gray;
+			span{
+				width: 15px;
+				overflow: hidden;
+			}
+		}
+		span{
+			@include transition(all 0.25s ease);
+			width: 0px;
+			overflow: hidden;
+		}
+	}
+}

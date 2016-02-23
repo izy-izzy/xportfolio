@@ -1,98 +1,102 @@
 nav{
-	    z-index: 1000;
-    width: 100%
+	position: relative;
+	z-index: 1000;
+    width: 100%;
+	&.navbar{
+		border-radius:0px !important;
+		border: 0px solid white;
+	}
 }
-
 .navbar{
-	border-radius:0px !important;
-	border: 0px solid white;
-}
-
-.container-fluid > .navbar-header, 
-.container-fluid > .navbar-collapse{
-	margin-left: 0px;
-	margin-right: 0px;
-}
-.navbar-default .navbar-collapse{
-	background: transparent;
-}
-
-.navbar-default{
-	background-color: white;
-	background-color:rgba(255,255,255,0.85) !important;
-}
-
-.navbar-brand{
-	padding:0px;
-	img {
-		max-height: 100%;
-	}
-	margin-left:0px !important;
-}
-
-.navbar-collapse{
-	border-top: 0px solid white;
-}
-
-.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus{
-	background-color: transparent !important;
-}
-
-.navbar-default .navbar-toggle{
-	border: 0px solid white;
-	&:hover{
-		span.icon-bar{
-			background-color: $red;
+	&-default{
+		background-color: rgba(255,255,255,0.85) !important;
+		.navbar-toggle{
+			border: 0px solid white;
+			padding : 0px;
+			margin-right:15px;
+			&:hover,
+			&:focus{
+				background-color: transparent !important;
+				span.icon-bar{
+					background-color: $red;
+				}
+			}
 		}
 	}
-}
-
-.navbar-toggle{
-	padding : 0px;
-}
-
-.navbar-nav{
-	float :right;
-	& > li{
+	&-collapse{
+		margin-left: 0px;
+		margin-right: 0px;
 		background: transparent;
-		a{
-			font-size: 12px;
-			text-transform: uppercase;
-			padding: 15px;
-			display: block;
-			width: 100%;
-			height: 100%;
-			span{
-				padding-top: 4px;
-				padding-bottom:4px;
-				display: block;
+		border-top: 0px solid white;
+		.navbar-nav{
+			margin-top: 0px;
+			margin-right: -10px;
+			float :right;
+			& > li{
+				background: transparent;
+				display: inline-block;
+				a{
+					padding: 0px 15px 0px 15px;
+					font-size: 12px;
+					text-transform: uppercase;
+					padding: 15px;
+					display: block;
+					width: 100%;
+					height: 100%;
+					span{
+						padding-top: 4px;
+						padding-bottom:4px;
+						display: block;
+					}
+				}
+				a.active{
+					background-color: transparent !important;
+					span{
+						border-bottom:3px solid $red;
+						
+					}
+				}
 			}
-			
 		}
-		a.active{
-			background-color: transparent !important;
-			span{
-				border-bottom:3px solid $red;
-				
+	}
+	&-header{
+		margin-left: 0px;
+		margin-right: 0px;
+		.navbar-brand{
+			&:hover{
+				opacity: 0.75;
 			}
+			padding:0px;
+			img {
+				max-height: 100%;
+			}
+			margin-left:0px !important;
+		}
+	}
+}
+	
+
+@media screen and (max-width: $screen-tablet){
+	.navbar{
+		.container-fluid{
+			padding: 0px;
+		}
+		&-brand{
+			margin:10px 10px 10px 10px !important;
+			height: 32px;
+			width: 32px;
+		}
+		&-header{
+			margin-left: 10px !important;
+			margin-right: 0px !important;
+		}
+		&-collapse{
+			margin-right: 0px !important;
 		}
 	}
 }
 
-.navbar-collapse{
-	ul{
-		margin-top: 0px;
-		margin-right: -10px;
-		float: right;
-		li{
-			display: inline-block;
-			a{
-				padding: 0px 15px 0px 15px;
-			}
-		}
-	}
-}
 
-.navbar-toggle{
-	margin-right:15px;
-}
+
+
+

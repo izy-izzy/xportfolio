@@ -1,35 +1,11 @@
-#page-error404{
-	background-image:url('./../images/error404_bg.jpg');
-	background-repeat:no-repeat;
-	background-size: cover;
-	background-position: center center;
-	min-height: 100%;
-	width: 100%;
-	position :absolute;
-	text-align:center;
-	h1{
-		color: white;
-		margin-top: 15%;
-		font-size: 36px;
-		font-weight: 300;
-	}
-	h2{
-		font-size: 24px;
-		font-weight: 300;
-		color: silver;
-	}
-	a.btn{
-		text-transform: uppercase;
-		color: black;
-		margin-top: 20px;
-		padding: 15px 30px;
-		background: white;
-		border-radius: 45px;
-		font-size: 16px;
-		font-weight: 400;
-		&:hover{
-			opacity: 0.75;
+.page{
+	&-error404{
+		background-image:url('./../images/error404_bg.jpg');
+		h1{
+			color: white;
 		}
-
+		h2{
+			color: silver;
+		}
 	}
 }

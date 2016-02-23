@@ -1,164 +1,118 @@
-
-#page-projects{
-
-	.isotope-container{
-		position: absolute;
-	}
-	h1{
-		font-size: 24px;
-		text-transform: uppercase;
-		width: 100%;
-	}
-	h2{
-		font-size: 18px;
-		font-weight: 300;
-	}
-	span{
-		&.info{
-			font-size: 13px;
-			font-weight: 300;
+.page{
+	&-projects{
+		.isotope-container{
+			position: absolute;
 		}
-	}
-	background: transparent;
-
-	.filters{
-		margin-left: 15px;
-		margin-top: 20px;
-		margin-bottom: 20px;
-		.filter{
-			display: inline-block;
-			color : black;
-			font-size: 13px;
+		h1{
+			font-size: 24px;
 			text-transform: uppercase;
+			width: 100%;
+		}
+		h2{
+			font-size: 18px;
 			font-weight: 300;
-			margin-right: 40px;
-			cursor: pointer;
-			padding-right: 20px;
-			border-bottom: 3px solid white;
-			&:hover,
-			&.active{
-				color: $red;
-				text-decoration: none;
-				border-bottom: 3px solid $red;
+		}
+		span{
+			&.info{
+				font-size: 13px;
+				font-weight: 300;
 			}
 		}
-	}
-	.project{
-		&-box{
-			a{
+		background: transparent;
+		.filters{
+			margin-left: 15px;
+			margin-top: 20px;
+			margin-bottom: 20px;
+			.filter{
+				display: inline-block;
 				color : black;
-				&:hover{
-					color: black;
+				font-size: 13px;
+				text-transform: uppercase;
+				font-weight: 300;
+				margin-right: 40px;
+				cursor: pointer;
+				padding-right: 20px;
+				border-bottom: 3px solid white;
+				&:hover,
+				&.active{
+					color: $red;
 					text-decoration: none;
+					border-bottom: 3px solid $red;
 				}
 			}
-			//@include transition(all 0.5s ease);
-			//opacity: 0.01;
-			cursor: pointer;
-			@extend .imageLoading;
-				
-			&:hover{
-				background-color: rgba(0,0,0,0.05);
-			}
-			&.loaded{
-				opacity: 1;
-			}
-			.loader{
-				width: 0px;
-				height: 1px;
-				background-color: $red;
-				margin-bottom: 10px;
-				opacity : 0.25;
-			}
-			&.x-0{
-				/*width: 200px;*/
-				width: 450px;
-			}
-			&.x-1{
-				/*width: 300px;*/
-				width: 450px;
-			}
-			&.x-2{
-				/*width: 400px;*/
-				width: 450px;
-			}
-			&.x-3{
-				/*width: 500px;*/
-				width: 450px;
-			}
-			&.x-4{
-				/*width: 600px;*/
-				width: 450px;
-			}
-			&.x-5{
-				/*width: 700px;*/
-				width: 450px;
-			}
-			padding:15px;
-			.image_thumb{
-				background-position: center;
-				background-size: cover;
-				width:100%;
-				&.y-0{
-					height: 150px;
-					/*height: 260px;*/
+		}
+		.project{
+			&-box{
+				a{
+					color : black;
+					&:hover{
+						color: black;
+						text-decoration: none;
+					}
 				}
-				&.y-1{
-					height: 200px;
-					/*height: 260px;*/
+				cursor: pointer;
+				@extend .imageLoading;
+				&:hover{
+					background-color: rgba(0,0,0,0.05);
 				}
-				&.y-2{
-					height: 250px;
-					/*height: 260px;*/
+				&.loaded{
+					opacity: 1;
 				}
-				&.y-3{
-					height: 300px;
-					/*height: 260px;*/
+				.loader{
+					width: 0px;
+					height: 1px;
+					background-color: $red;
+					margin-bottom: 10px;
+					opacity : 0.25;
 				}
-				&.y-4{
-					height: 350px;
-					/*height: 260px;*/
+				&.x-0,&.x-1,&.x-2,&.x-3,&.x-4,&.x-5{
+					width:450px;
 				}
-				&.y-5{
-					height: 400px;
-					/*height: 260px;*/
+				padding:15px;
+				.image_thumb{
+					background-position: center;
+					background-size: cover;
+					width:100%;
+					$width-list: 150px 200px 250px 300px 350px 400px;
+					@each $current-width in $width-list {
+					    $i: index($width-list, $current-width);
+					    &.y-#{$i} { 
+					        height: $current-width;
+					    }
+					}
 				}
-			}
-			.info{
-				height: 85px;
-				overflow: hidden;
+				.info{
+					height: 85px;
+					overflow: hidden;
+				}
 			}
 		}
 	}
 }
 
 @media screen and (max-width: $screen-tablet){
-	#page-projects{
-		.project-box{
-			&.x-1{
-				width: 50% !important;
-			}
-			&.x-2{
-				width: 50% !important;
-			}
-			&.x-3{
-				width: 100% !important;
+	.page{
+		&-projects{
+			.project-box{
+				&.x-1,
+				&.x-2{
+					width: 50% !important;
+				}
+				&.x-3,&.x-4,&.x-5{
+					width: 100% !important;
+				}
 			}
 		}
 	}
 }
 
 @media screen and (max-width: $screen-phone){
-	#page-projects{
-		.project-box{
-			&.x-1{
-				width: 100% !important;
-			}
-			&.x-2{
-				width: 100% !important;
-			}
-			&.x-3{
-				width: 100% !important;
+	.page{
+		&-projects{
+			.project-box{
+				&.x-0,&.x-1,&.x-2,&.x-3,&.x-4,&.x-5{
+					width: 100% !important;
+				}
 			}
 		}
 	}

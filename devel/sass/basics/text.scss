@@ -1,0 +1,41 @@
+h1{
+	font-size: 24px;
+	text-transform: uppercase;
+	width: 100%;
+}
+
+h2{
+	font-size: 16px;
+	font-weight: 300;
+}
+
+h3{
+	font-size: 14px;
+	font-weight: 500;
+}
+
+h4{
+	font-size:12px;
+	font-weight: 700;
+}
+
+
+p{
+	margin-top: 30px;
+	font-size: 24px;
+	font-weight: 300;
+	@media screen and (max-height: 650px) , (max-width: $screen-phone){
+		&{
+			font-size: 16px;
+		}
+	}
+}
+
+
+a{
+	@include transition(all 0.25s ease);
+	color: $red;
+	&:hover{
+		color: lighten($red, 10%);
+	}
+}

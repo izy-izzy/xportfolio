@@ -1,0 +1,21 @@
+.container{
+	&-fluid{
+		margin: 0px;
+		padding: 20px;
+		.row{
+			margin-left: 0px;
+			margin-right: 0px;
+		}
+	}
+}
+
+@media screen and (max-width: $screen-phone){
+	.container-fluid{
+		margin: 0px;
+		padding: 0px;
+		.row{
+			margin-left: 0px;
+			margin-right: 0px;
+		}
+	}
+}
