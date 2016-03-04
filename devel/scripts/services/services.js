@@ -1,21 +1,34 @@
 xportfolio.service('portfolioProjectsService', function($firebaseArray, $firebaseObject, $rootScope) {
+
+  this.firebaseObject = null;
+
+  this.ConnectToFirebase = function(){
+    if (this.firebaseObject === null){
+      this.firebaseObject = new Firebase($rootScope.settings.fireBaseHttp);
+    } 
+  }
+
   this.getProject = function(id) {
-    return $firebaseObject(new Firebase($rootScope.settings.fireBaseHttp+"/projects/"+id));
+    this.ConnectToFirebase();
+    return $firebaseObject(this.firebaseObject.child('projects').child(id));
   }
   this.getAllProjects = function() {
-    return $firebaseArray(new Firebase($rootScope.settings.fireBaseHttp+"/projects/").orderByChild("priority"));
+    this.ConnectToFirebase();
+    return $firebaseArray(this.firebaseObject.child('projects').orderByChild("priority"));
   }
   this.getAllProjectsObjects = function(){
-    return $firebaseObject(new Firebase($rootScope.settings.fireBaseHttp+"/projects/").orderByChild("priority"));
+    this.ConnectToFirebase();
+    return $firebaseObject(this.firebaseObject.child('projects').orderByChild("priority"));
   }
   this.updateAll = function(data){
-    new Firebase($rootScope.settings.fireBaseHttp+"/projects/").update(data);
+    this.ConnectToFirebase();
+    this.firebaseObject.child('projects').update(data);
     return true;
   }
   this.authWithPassword = function(user) {
+    this.ConnectToFirebase();
     var deferred = $.Deferred();
-    var ref = new Firebase($rootScope.settings.fireBaseHttp);
-    ref.authWithPassword(user, function onAuth(err, user) {
+    this.firebaseObject.authWithPassword(user, function onAuth(err, user) {
         if (err) {
             deferred.reject(err);
         }
@@ -26,9 +39,9 @@ xportfolio.service('portfolioProjectsService', function($firebaseArray, $firebas
     return deferred.promise();
   }
   this.unAuth = function(){
+    this.ConnectToFirebase();
     var deferred = $.Deferred();
-    var ref = new Firebase($rootScope.settings.fireBaseHttp);
-     ref.unauth(function onAuth(value) {
+    this.firebaseObject.unauth(function onAuth(value) {
         if (value == null) {
           deferred.resolve(true);
         } else {
@@ -38,12 +51,13 @@ xportfolio.service('portfolioProjectsService', function($firebaseArray, $firebas
     return deferred.promise();
   }
   this.getAuth = function(){
-    var ref = new Firebase($rootScope.settings.fireBaseHttp);
-    return ref.getAuth();
+    this.ConnectToFirebase();
+    return this.firebaseObject.getAuth();
   }
   this.testWrite = function(){
+    this.ConnectToFirebase();
     var deferred = $.Deferred();
-    var testdata = $firebaseObject(new Firebase($rootScope.settings.fireBaseHttp+"/writetest/"));
+    var testdata = $firebaseObject(this.firebaseObject.child('writetest'));
     testdata.writeme = 0;
     testdata.$save().then(function(ref) {
         deferred.resolve(true);

@@ -6236,6 +6236,7 @@ nav {
   min-width: 80px;
   max-width: 100%;
   position: absolute;
+  display: block !important;
   left: 0;
   top: 0;
   padding: 20px;
