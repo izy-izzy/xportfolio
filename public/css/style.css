@@ -6302,7 +6302,10 @@ nav {
   z-index: 100;
   display: inline-block;
   opacity: 0;
-  max-width: 100%; }
+  max-width: 100%;
+  -webkit-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out; }
   .page-image .main_image.loaded {
     opacity: 1; }
 
